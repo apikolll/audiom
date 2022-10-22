@@ -12,7 +12,7 @@
             <div class="d-flex text-center justify-content-center">
                 <div class="d-block">
                     <a href="#" class="text-decoration-none">
-                        <h4 class="text-center display-4"><span class="fw-light text-dark"> Let's make your life happier</span><span class="text-light">.</span></h4>
+                        <h4 class="text-center display-4"><span class="fw-light text-light"> Let's make your life happier</span><span class="text-light">.</span></h4>
                     </a>
                     {{-- custom-container is a custome container --}}
                     <div class="custom-container mt-4">
