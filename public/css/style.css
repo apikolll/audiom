@@ -1,0 +1,52 @@
+body {
+    background-color: #00928F;
+}
+
+img {
+    width: 65px;
+    height: 64px;
+}
+
+
+.middle-content {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    border-radius: 1px;
+    width: 30rem;
+}
+
+@media (min-width: 1000px) {
+    .card {
+        width: 25rem;
+    }
+}
+
+.font-1 {
+    font-family: 'Yeseva One', cursive;
+}
+
+.custom-container {
+    padding-left: 10rem;
+    padding-right: 10rem;
+}
+
+@media(min-width:300px) {
+    .custom-container {
+        padding-left: 0rem;
+        padding-right: 0rem;
+    }
+}
+
+.dropdown-toggle::after {
+    content: none;
+}
+
+.fs-7{
+    font-size: 11px;
+}
+

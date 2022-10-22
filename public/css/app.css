@@ -1,0 +1,28 @@
+body {
+    font-family: 'Yeseva One', cursive;
+    background-color: #00928F;
+}
+
+img {
+    width: 65px;
+    height: 64px;
+}
+
+
+/* .middle-content{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+} */
+
+.card{
+    border-radius: 10px;
+    width: 22rem;
+}
+
+@media (min-width: 1000px) {
+    .card{
+        width: 25rem;
+    }
+}
