@@ -1,0 +1,78 @@
+body {
+    background-color: #00928F;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 500;
+}
+
+.sidebar {
+    width: 300px;
+    height: 100%;
+    left: -300px;
+    overflow:hidden;
+    position: fixed;
+    z-index: 111;
+    opacity: 1;
+    transition: all 0.3s;
+}
+
+.top {
+    width: 55px;
+    height: 54px;
+}
+
+img.dp{
+    width: 45px;
+    height: 44px;
+}
+
+
+img.icon{
+    width: 25px;
+    height: 25px;
+}
+
+.icon1 {
+    transition: all 0.5s;
+    z-index: 111;
+}
+
+.icon1:hover{
+    cursor: pointer;
+    transform: rotate(360deg);
+    
+}
+
+.icon2 {
+    transition: all 0.5s;
+    position: absolute;
+}
+
+.icon2:hover{
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+#sb{
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#sb:hover{
+    background-color: rgb(172, 172, 172);
+    transition: all 0.3s;
+}
+
+.enter{
+    left: 0;
+    opacity: 1;
+}
+
+#content1 {
+    transition: all 0.3s;
+    margin-left: 300px;
+}
+
+.icon-dashboard {
+    width: 40px;
+    height: 40px;
+}

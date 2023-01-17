@@ -3,22 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Staff;
+use App\Models\Patient;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserCreateRequest;
+use Illuminate\Support\Carbon;
 
 class UserController extends Controller
 {
     // function to register user
     public function createUser(UserCreateRequest $request)
     {
-
         $user = new User();
-        $user->username = $request->username;
         $user->email = $request->email;
+        $user->name = $request->name;
         $user->password = Hash::make($request->password);
 
         if ($request->roleuser == 'patient') {
@@ -30,12 +32,23 @@ class UserController extends Controller
         }
         $user->save();
 
-        if ($request->roleuser == 'patient') {
-            return redirect('patient');
-        } elseif ($request->roleuser == 'staff') {
-            return redirect('staff');
-        } elseif ($request->roleuser == 'doctor') {
-            return redirect('doctor');
+        $patient = new Patient();
+        $staff = new Staff();
+
+        if ($user->role == 'patient') {
+            $patient->user_id = $user->id;
+            $patient->name = $request->name;
+            $patient->save();
+            return redirect()->route('patient.page');
+
+        } elseif ($user->role == 'staff') {
+            $staff->user_id = $user->id;
+            $staff->name = $request->name;
+            $staff->save();
+            return redirect()->route('staff.page');
+
+        } elseif ($user->role == 'doctor') {
+            return redirect()->route('doctor.page');
         }
     }
 
@@ -44,11 +57,13 @@ class UserController extends Controller
     {
 
         $credentials = $request->validate([
-            'username' => 'required',
+            'email' => 'required|email',
             'password' => 'required',
         ]);
 
         if (Auth::attempt($credentials)) {
+
+            $request->session()->regenerateToken();
 
             if (auth()->user()->role == "patient") {
                 return redirect()->route('patient.page');
@@ -58,7 +73,7 @@ class UserController extends Controller
                 return redirect()->route('doctor.page');
             }
         }
-        return back()->with('error', 'Username or password is wrong ');
+        return back()->with('error', 'Email or password is wrong ');
     }
 
     //patient homepage
@@ -70,7 +85,8 @@ class UserController extends Controller
     //staff homepage
     public function staff()
     {
-        return view('staff.homepage');
+        $staff = User::all()->count();
+        return view('staff.dashboard', compact('staff'));
     }
 
     //doctor homepage
@@ -85,18 +101,32 @@ class UserController extends Controller
 
         Auth::logout();
 
-        $request->session()->invalidate();
+        $request->session()->invalidate(); //regenerate the id
 
-        $request->session()->regenerateToken();
+        $request->session()->regenerateToken(); //regenerate the csrf token
 
         return redirect('/');
     }
 
     //function to manage user profile
-    public function userProfile(){
-        
+    public function userProfile()
+    {
+
         $users = DB::table('users')->get();
         return view('patient.profile', ['users' => $users]);
-     
+    }
+
+
+    public function sendResetLink(Request $request)
+    {
+
+        $request->validate([
+            'email' => 'required|email|exists:users,email'
+        ]);
+    }
+
+    public function bookAppointment()
+    {
+        return view('patient.bookAppointment');
     }
 }

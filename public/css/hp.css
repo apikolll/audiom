@@ -1,0 +1,59 @@
+body {
+    background-color: #00928F;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 500;
+}
+
+
+img {
+    width: 65px;
+    height: 64px;
+}
+
+
+.card{
+    border-radius: 10px;
+    width: 22rem;
+}
+
+@media (min-width: 1000px) {
+    .card{
+        width: 25rem;
+    }
+}
+
+.font-1 {
+    font-family: 'Yeseva One', cursive;
+}
+
+.custom-container {
+    padding-left: 10rem;
+    padding-right: 10rem;
+}
+
+@media(min-width:300px) {
+    .custom-container {
+        padding-left: 0rem;
+        padding-right: 0rem;
+    }
+}
+
+.dropdown-toggle::after {
+    content: none;
+}
+
+.fs-7 {
+    font-size: 11px;
+}
+
+.br-4 {
+    border-radius: 8px;
+    /* box-shadow: 8px 10px 20px rgb(36, 36, 36); */
+}
+
+@media(min-width:400px) {
+    .email{
+        padding-left: 25rem;
+        padding-right: 25rem;
+    }
+}

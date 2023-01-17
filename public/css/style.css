@@ -1,30 +1,23 @@
 body {
     background-color: #00928F;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 500;
 }
 
 
-img {
+img.top {
     width: 65px;
     height: 64px;
 }
 
-
-.middle-content {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+img.icon {
+    width: 30px;
+    height: 30px;
 }
 
-.card {
-    border-radius: 1px;
-    width: 30rem;
-}
 
-@media (min-width: 1000px) {
-    .card {
-        width: 25rem;
-    }
+.card.opa {
+    opacity: 70%;
 }
 
 .font-1 {
@@ -47,7 +40,19 @@ img {
     content: none;
 }
 
-.fs-7{
+.fs-7 {
     font-size: 11px;
+}
+
+.br-4 {
+    border-radius: 8px;
+    /* box-shadow: 8px 10px 20px rgb(36, 36, 36); */
+}
+
+@media(min-width:400px) {
+    .email {
+        padding-left: 25rem;
+        padding-right: 25rem;
+    }
 }
 

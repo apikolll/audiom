@@ -13,17 +13,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="{{ asset('css/hp.css') }}">
 </head>
 
-<body style="font-family: 'Yeseva One', cursived;">
+<body>
 
     <div class="h2 p-3">
         <a href="{{ URL::previous() }}" class="text-dark"><i class="bi bi-arrow-left-circle"></i></a>
     </div>
 
     <div class="position-absolute start-50 translate-middle align-items-center">
-        <a href="homepage"><img src="img/logo.png" alt="logoIIUM" style="width:6rem; height:6rem;"></a>
+        <a href="/"><img src="img/logo.png" alt="logoIIUM" style="width:6rem; height:6rem;"></a>
     </div>
 
     <div class="container text-center d-none d-lg-block" style="margin-top: 5rem;">
@@ -31,10 +31,15 @@
     </div>
 
 
-    <section class="position-absolute top-50 start-50 translate-middle middle-content mt-1">
+    <section class="position-absolute top-50 start-50 translate-middle mt-3">
         <div class="container">
             @if (Session::has('error'))
-                <div class="alert alert-danger text-center">{{ Session::get('error')}}</div>
+            <div class="alert alert-danger text-center">{{ Session::get('error') }}</div>
+            @endif
+            @if (Session::has('message'))
+            <div class="alert alert-success" role="alert">
+                {{ Session::get('message') }}
+            </div>
             @endif
             <div class="card">
                 <div class="card-body">
@@ -45,24 +50,27 @@
                     <form action="{{ route('login.custom') }}" method="post" class="needs-validation" novalidate>
                         @csrf
                         <div class="form-floating mb-3">
-                            <input type="text" name="username" class="form-control" id="floatingInput"
-                                placeholder="Username" value="{{ old('username') }}" required>
-                            <label for="floatingInput">Username</label>
-                            @error('username')
-                                <div class="alert alert-danger">
-                                    {{ $message }}
-                                </div>
+                            <input type="email" name="email" class="form-control" id="floatingInput" placeholder="Email"
+                                value="{{ old('email') }}" required>
+                            <label for="floatingInput">Email</label>
+                            @error('email')
+                            <div class="text-danger">
+                                {{ $message }}
+                            </div>
                             @enderror
+
                         </div>
                         <div class="form-floating mb-4">
                             <input type="password" name="password" class="form-control" id="floatingPassword"
                                 placeholder="Password" required>
                             <label for="floatingPassword">Password</label>
                             @error('password')
-                                <div class="alert alert-danger">
-                                    {{ $message }}
-                                </div>
+                            <div class="text-danger">
+                                {{ $message }}
+                            </div>
                             @enderror
+                            <div class="text-secondary mt-3"><a href="{{ route('forget.password.get') }}"
+                                    class="text-decoration-none fs-6">Forgot password?</a></div>
                         </div>
                         <div class="text-center mb-2">
                             <button class="btn btn-dark p-2 px-4 s-2 w-100 fs-4 bg-dark text-light">Log in</button>

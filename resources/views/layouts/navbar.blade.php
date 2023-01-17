@@ -13,18 +13,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .blur{
+            backdrop-filter: blur(10px);
+        }
+    </style>
 </head>
 
-<body style="font-family: 'Yeseva One', cursive;">
+<body>
+    
 
     {{-- Navbar --}}
     @yield('navbar')
-    <nav class="navbar navbar-expand-lg">
+
+    <nav class="navbar navbar-expand-lg fixed-top blur">
         <div class="container">
             <div class="d-flex">
-                <a class="navbar-brand" href="#">
-                    <img src="img/logo.png" alt="logoIIUM">
-                    <span class="fs-3 fw-semibold">IIUM</span>
+                <a class="navbar-brand d-flex align-items-center" href="#">
+                    <img src="img/logo.png" alt="logoIIUM" class="top">
+                    <span class="fs-3 fw-semibold mx-2">IIUM</span>
                     <span class="d-none d-lg-inline fs-5 fw-light">Hearing & Speech Clinic</span>
                 </a>
             </div>
@@ -36,7 +43,7 @@
 
             {{-- Nav Items --}}
             <div class="collapse navbar-collapse text-center" id="navmenu">
-                <ul class="navbar-nav ms-auto">
+                <ul class="navbar-nav ms-auto fs-5">
                     <li class="nav-item">
                         <a href="#" class="nav-link text-dark">About</a>
                     </li>
@@ -50,20 +57,24 @@
                         <a href="#" class="nav-link text-dark">Contact</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a href="login"><button type="button" class="btn btn-outline-warning">Login</button></a>
+                        <a href="login" class="btn btn-outline-warning" type="button">Login</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    @yield('section1')
-    @yield('section2')
+
+
+    @yield('content1')
+    @yield('content2')
     @yield('footer')
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous">
     </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="\js\index.js"></script>
 </body>
 

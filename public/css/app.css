@@ -1,5 +1,7 @@
 body {
-    font-family: 'Yeseva One', cursive;
+    /* font-family: 'Yeseva One', cursive; */
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 500;
     background-color: #00928F;
 }
 
@@ -8,13 +10,6 @@ img {
     height: 64px;
 }
 
-
-/* .middle-content{
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-} */
 
 .card{
     border-radius: 10px;

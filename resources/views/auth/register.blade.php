@@ -13,20 +13,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="{{ asset('css/hp.css') }}">
 </head>
 
-<body style="font-family: 'Yeseva One', cursived;">
+<body>
 
     <div class="h2 p-3">
         <a href="{{ URL::previous() }}" class="text-dark"><i class="bi bi-arrow-left-circle"></i></a>
     </div>
 
     <div class="position-absolute start-50 translate-middle">
-        <a href="homepage"><img src="img/logo.png" alt="logoIIUM" style="width:6rem; height:6rem;"></a>
+        <a href="{{ route('homepage.page') }}"><img src="img/logo.png" alt="logoIIUM" style="width:6rem; height:6rem;"></a>
     </div>
 
-    <section class="position-absolute top-50 start-50 translate-middle middle-content mt-3">
+    <section class="position-absolute top-50 start-50 translate-middle mt-3">
         <div class="container">
             <div class="card">
                 <div class="card-body">
@@ -37,20 +37,20 @@
                     <form action="{{ route('register.custom') }}" method="post" class="needs-validation" novalidate>
                         @csrf
                         <div class="form-floating mb-3">
-                            <input type="text" name="username" class="form-control" id="floatingInput"
-                                placeholder="Username" value="{{ old('username') }}" required>
-                            <label for="floatingInput">Username</label>
-                            @error('username')
+                            <input type="email" name="email" class="form-control" id="floatingInput"
+                                placeholder="name@example.com" value="{{ old('email') }}" required>
+                            <label for="floatingInput">Email address</label>
+                            @error('email')
                                 <div class="text-danger">
                                     {{ $message }}
                                 </div>
                             @enderror
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="email" name="email" class="form-control" id="floatingInput"
-                                placeholder="name@example.com" value="{{ old('email') }}" required>
-                            <label for="floatingInput">Email address</label>
-                            @error('email')
+                            <input type="text" name="name" class="form-control" id="floatingInput"
+                                placeholder="Name" value="{{ old('name') }}" required>
+                            <label for="floatingInput">Name</label>
+                            @error('name')
                                 <div class="text-danger">
                                     {{ $message }}
                                 </div>
