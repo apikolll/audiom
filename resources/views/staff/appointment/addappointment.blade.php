@@ -52,7 +52,7 @@
 </div>
 @enderror
 
-<section class="p-5 text-dark fs-5 shadow-lg bg-dark border border-dark  rounded-4 bg-opacity-10 border-opacity-10">
+<section class="p-5 text-dark fs-5 shadow-lg bg-light border border-dark rounded-4 border-opacity-10">
 
 
     <div class="alert alert-danger alert-dismissible fade show text-center unactive" id="err" role="alert">
@@ -62,7 +62,31 @@
 
     <form action="{{ route('appointment.store') }}" enctype="multipart/form-data" method="POST">
         @csrf
-        <div class="card mb-3">
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Select Date:</label>
+            <input type="date" class="form-control" name="date" id="exampleFormControlInput1">
+        </div>
+
+        <label for="exampleFormControlInput1" class="form-label">Select Session:</label>
+        <div class="row">
+            @foreach ($sessions as $session)
+            <div class="col-4">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="{{ $session->id }}" name="session[]" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        <span class="fw-semibold">Session {{ $session->id }} </span>
+                        <p class="lead fs-6"> Time:
+                            {{\Carbon\Carbon::createFromFormat('H:i:s',$session->starttime)->format('g:i
+                            A')}} -
+                            {{\Carbon\Carbon::createFromFormat('H:i:s',$session->endtime)->format('g:i
+                            A')}}</p>
+                    </label>
+                </div>
+            </div>
+            @endforeach
+        </div>
+        {{-- <div class="card mb-3">
             <div class="card-header">
                 <h3>Choose A Date</h3>
             </div>
@@ -70,9 +94,84 @@
                 <input type="date" class="form-control datetimepicker-input" id="datepicker"
                     data-toggle="datetimepicker" data-target="#datepicker" name="date" value="{{ old('date') }}">
             </div>
-        </div>
+        </div> --}}
 
-        @foreach ($cabin as $cabins)
+        {{-- @foreach ($cabin as $cabins) --}}
+        {{-- <div class="row mb-3">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <div class="d-flex justify-content-between mb-3">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Cabin1" id="flexCheckDefault"
+                                    name="Cabin1">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    <span class="badge bg-primary">Cabin 1</span>
+                                </label>
+                            </div>
+                            <div class="form-check form-switch">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="" value=""
+                                        id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        <span class="fw-semibold">Session 1 </span>
+                                        <p class="lead fs-6"> Time: 9.00am - 10.00am</p>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="" value=""
+                                        id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        <span class="fw-semibold">Session 2 </span>
+                                        <p class="lead fs-6"> Time: 10.00am - 11.00am</p>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="" value=""
+                                        id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        <span class="fw-semibold">Session 3 </span>
+                                        <p class="lead fs-6"> Time: 11.00am - 12.00pm</p>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="" value=""
+                                        id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        <span class="fw-semibold">Session 4 </span>
+                                        <p class="lead fs-6"> Time: 14.30pm - 15.30pm</p>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="" value=""
+                                        id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        <span class="fw-semibold">Session 5 </span>
+                                        <p class="lead fs-6"> Time: 15.3pm - 16.30pm</p>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div> --}}
+        {{-- @endforeach --}}
+
+        {{-- @foreach ($cabin as $cabins)
         <div class="row mb-3">
             <div class="col-sm-12">
                 <div class="card">
@@ -81,7 +180,8 @@
                             <h5 class="card-title fw-semibold">Cabin {{ $cabins->id }}</h5>
                             <div class="form-check form-switch">
                                 <input data-id="{{$cabins->id}}" class="form-check-input toggle-class" name="cabin[]"
-                                    type="checkbox" value="{{ $cabins->id }}" {{ $cabins->status == "Open" ?
+                                    type="checkbox" value="{{ $cabins->id }}" {{ $cabins->status ==
+                                "Open" ?
                                 "checked" :
                                 "" }}>
                             </div>
@@ -122,8 +222,8 @@
                 </div>
             </div>
         </div>
-        @endforeach
-        <div class="text-center">
+        @endforeach --}}
+        <div class="text-center mt-3">
             <button class="btn btn-primary px-4">Submit</button>
         </div>
     </form>

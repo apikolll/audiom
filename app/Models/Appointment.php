@@ -12,6 +12,11 @@ class Appointment extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'date',
+        'session'
+    ];
+
     public function cabin(){
         return $this->belongsTo(Cabin::class, 'cabin_id', 'id');
     }

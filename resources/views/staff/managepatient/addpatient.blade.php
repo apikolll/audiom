@@ -88,7 +88,8 @@
                 <div class="form-group">
                     <label class="mb-2">Password</label>
                     <div class="input-group mb-3">
-                        <input class="form-control bg-light input1" type="password" name="password" placeholder="Password" required>
+                        <input class="form-control bg-light input1" type="password" name="password"
+                            placeholder="Password" required>
                         <div class="input-group-text" style="cursor: pointer">
                             <img src="{{ asset('img/show.png') }}" style="width: 20px;" alt="show" id="show1">
                             <img src="{{ asset('img/hide.png') }}" style="width: 20px;" alt="show" id="hide1"
@@ -101,8 +102,8 @@
                 <div class="form-group">
                     <label class="mb-2">Confirm Password</label>
                     <div class="input-group mb-3">
-                        <input class="form-control bg-light input2" type="password" name="password_confirmation" placeholder="Confirm Password"
-                            required>
+                        <input class="form-control bg-light input2" type="password" name="password_confirmation"
+                            placeholder="Confirm Password" required>
                         <div class="input-group-text" style="cursor: pointer">
                             <img src="{{ asset('img/show.png') }}" style="width: 20px;" alt="show" id="show2">
                             <img src="{{ asset('img/hide.png') }}" style="width: 20px;" alt="show" id="hide2"
@@ -124,7 +125,8 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label class="mb-2">Address</label>
-                    <input class="form-control bg-light" type="text" name="address" value="{{ old('address') }}" required>
+                    <input class="form-control bg-light" type="text" name="address" value="{{ old('address') }}"
+                        required>
                 </div>
             </div>
         </div>

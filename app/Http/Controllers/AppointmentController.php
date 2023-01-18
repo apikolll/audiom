@@ -39,8 +39,8 @@ class AppointmentController extends Controller
     {
         // $session = Session::all();
         $cabin = Cabin::all();
-        $session = Session::all();
-        return view('staff.appointment.addappointment', compact('cabin', 'session'));
+        $sessions = Session::all();
+        return view('staff.appointment.addappointment', compact('cabin', 'sessions'));
     }
 
     /**
@@ -54,47 +54,15 @@ class AppointmentController extends Controller
         $request->validate([
             // 'date' => 'required|unique:appointments,date,NULL,id,user_id,' . Auth::id(),
             'date' => 'required|unique:appointments,date,NULL,id',
-            'cabin.*' => 'required',
+            'session.*' => 'required',
         ]);
 
-
-
-        foreach ($request->cabin as $cabins) {
-            foreach ($request->session[$cabins] as $sessions) {
-                $appointment = new Appointment();
-                $appointment->date = $request->date;
-                $appointment->cabin_id = $cabins;
-                $appointment->session_id = $sessions;
-                $appointment->save();
-            }
+        foreach ($request->session as $sessions) {
+            $appointment = new Appointment();
+            $appointment->date = $request->date;
+            $appointment->session_id = $sessions;
+            $appointment->save();
         }
-
-        // foreach ($request->cabin as $cabins) {
-        //     if ($cabins) {
-        //         $request->validate([
-        //             'session' => 'required'
-        //         ]);
-
-        //         $appointment = new Appointment();
-        //         $appointment->date = $request->date;
-        //         $appointment->save();
-
-        //         foreach($request->session as $sessions) {
-        //             // $appointment = Appointment::find($appointment->id);
-        //             // $appointment->cabins()->attach($cabins, ['session_id' => $sessions]);
-        //             // $data = $request->all();
-        //             foreach($sessions as $damn){
-        //                 dd($damn);
-        //             }
-        //             // Clinic::create([
-        //             //     'appointment_id' => $appointment->id,
-        //             //     'cabin_id' => $cabins,
-        //             //     'session_id' => $sessions
-        //             // ]);
-        //             // dd($request->all());
-        //         }
-        //     }
-        // }
 
         return redirect()->back()->with('message', 'An appointment created for ' . $request->date);
     }
@@ -128,25 +96,30 @@ class AppointmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $date)
     {
-        $appointmentId = $request->appointmentId;
-        $date = Appointment::where('id', $appointmentId)->get('date')->first()->date;
-        Session::where('appointment_id', $appointmentId)->delete();
-        // foreach ($request->time as $time) {
-        //     Time::create([
-        //         'appointment_id' => $appointmentId,
-        //         'time' => $time,
-        //         'status' => 0
+        $appId = $request->appointmentId;
+        dd($appId);
+        // $date = Appointment::where('id', $appId)->get('date')->first();
+        // // $appointment = Appointment::where('date', $date)->first();
+        // // Appointment::where('id', $appId)->delete();
+
+        // foreach ($request->session as $sessions) {
+        //     Appointment::create([
+        //         'date' => '2023-01-01',
+        //         'session_id' => $sessions
         //     ]);
         // }
-        foreach ($request->session as $sessions) {
-            Appointment::create([
-                'date' => $request->date,
-                'session' => $sessions->id
-            ]);
-        }
-        return redirect()->route('appointment.index')->with('message', 'Appointment time for ' . $date . ' is updated successfully!');
+
+        // $date = Appointment::where('id', $appointmentId)->get('date')->first()->date;
+        // Session::where('appointment_id', $appointmentId)->delete();
+        // foreach ($request->session as $sessions) {
+        //     Appointment::create([
+        //         'date' => $request->date,
+        //         'session' => $sessions->id
+        //     ]);
+        // }
+        // return redirect()->route('appointment.index')->with('message', 'Appointment time for ' . $date . ' is updated successfully!');
     }
 
     /**
@@ -160,7 +133,8 @@ class AppointmentController extends Controller
         //
     }
 
-    public function showSchedule(){
+    public function showSchedule()
+    {
         return view('staff.appointment.appointment_schedule');
     }
 
@@ -169,14 +143,22 @@ class AppointmentController extends Controller
         // to get only one column, we use pluck comes with first method to get only one date
         $date = Appointment::where('date', '=', $request->date)->pluck('date')->first();
 
-        // choose selected with table session and cabin [ need to use get method to get a collection]
-        $appointments = Appointment::where('date', '=', $request->date)->with('session', 'cabin')->get();
+        // choose selected with table session and cabin [ need to use get method to get a collection ]
+        $appointments = Appointment::where('date', '=', $date)->with('session')->get();
 
-        $cabin = Cabin::all();
-        $session = Session::all();
+        foreach ($appointments as $appointment) {
+            $app = Appointment::where('date', $date)->where('id', $appointment->id)->first();
+        }
+
+        // dd($app->session_id);
+        // $appointments = Appointment::where('date', '=', $date)->first();
+        // dd($appointments->id);
+        // $appointment = Appointment::where('date', $date)->where('user_id', auth()->user()->id)->first();
+
+        $sessions = Session::all();
 
         // check if date is not selected
-        if (!$request->date) {
+        if (!$date) {
             return redirect()->to('/showSchedule')->with('errMessage', 'Please pick a date first');
         }
 
@@ -186,8 +168,6 @@ class AppointmentController extends Controller
         };
 
         // return view('staff.appointment.editappointment', compact('appointments', 'date'));
-        return view('staff.appointment.appointment_schedule', compact('date', 'appointments', 'cabin', 'session'));
-
-
+        return view('staff.appointment.appointment_schedule', compact('date', 'appointments', 'sessions', 'app'));
     }
 }

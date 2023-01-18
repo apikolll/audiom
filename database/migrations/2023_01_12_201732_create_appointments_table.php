@@ -15,10 +15,8 @@ return new class extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('date')->unique();
-            $table->integer('cabin_id')->unsigned();
+            $table->date('date');
             $table->integer('session_id')->unsigned();
-            $table->foreign('cabin_id')->references('id')->on('cabins')->onDelete('cascade');
             $table->foreign('session_id')->references('id')->on('sessions')->onDelete('cascade');
             $table->timestamps();
         });
