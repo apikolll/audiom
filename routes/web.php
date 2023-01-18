@@ -70,8 +70,9 @@ Route::group(['middleware' => ['auth', 'user:staff']], function () {
         Route::post('/changepass', 'updatePassword')->name('update.password');
     });
 
-    Route::post('/appointment/check', [AppointmentController::class, ('check')])->name('appointment.check');
-    Route::get('/showSchedule', [AppointmentController::class, 'showSchedule'])->name('show.setSchedule');
+    // Route::post('/appointment/check', [AppointmentController::class, ('check')])->name('appointment.check');
+    Route::get('/showSchedule', [ScheduleController::class, 'showSchedule'])->name('show.setSchedule');
+    Route::post('/check', [ScheduleController::class, 'check'])->name('schedule.check');
 
     Route::resource('staff', StaffController::class);
     Route::resource('doctor', DoctorController::class);

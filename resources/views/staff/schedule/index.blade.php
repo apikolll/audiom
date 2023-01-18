@@ -21,13 +21,13 @@
 
 
 <ul class="nav mb-3">
-    <li class="nav-item {{ 'appointment' ==  request()->path() ? 'border-bottom' : '' }}">
+    <li class="nav-item {{ 'schedule' ==  request()->path() ? 'border-bottom' : '' }}">
         <a class="nav-link text-light fs-5" href="/appointment" id="appointment">Appointments</a>
         {{--
         <hr id="hr1" class="active mx-3"> --}}
     </li>
     <li class="nav-item {{ 'showSchedule' ==  request()->path() ? 'border-bottom' : '' }}">
-        <a class="nav-link text-light fs-5" href="{{ route('show.setSchedule') }}" id="appointmenttime">Appointment Schedule</a>
+        <a class="nav-link text-light fs-5" href="{{ route('show.setSchedule') }}" >Appointment Schedule</a>
         {{--
         <hr id="hr2" class="unactive mx-3"> --}}
     </li>

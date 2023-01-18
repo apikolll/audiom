@@ -12,7 +12,7 @@ class Schedule extends Model
 
     protected $guarded = [];
 
-    public function schedules(){
-        return $this->belongsToMany(Session::class, 'sessions_schedules', 'session_id', 'schedule_id');
+    public function sessions(){
+        return $this->belongsToMany(Session::class, 'sessions_schedules', 'schedule_id', 'session_id');
     }
 }

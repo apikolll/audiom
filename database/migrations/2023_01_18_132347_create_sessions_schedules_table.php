@@ -14,9 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('sessions_schedules', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('session_id');
+            // $table->increments('id');
+            $table->primary(['schedule_id', 'session_id']);
             $table->unsignedInteger('schedule_id');
+            $table->unsignedInteger('session_id');
             $table->foreign('session_id')->references('id')->on('sessions')->onDelete('cascade');
             $table->foreign('schedule_id')->references('id')->on('schedules')->onDelete('cascade');
             $table->timestamps();

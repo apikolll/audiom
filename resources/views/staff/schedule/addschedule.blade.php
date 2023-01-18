@@ -13,9 +13,9 @@
 </style>
 
 <div class="text-center text-light">
-    <h3 class="display-3 fw-bold">Create new appointment</h3>
+    <h3 class="display-3 fw-bold">Create new Schedule</h3>
 </div>
-<a href="{{ route('appointment.index') }}" class="btn btn-primary mb-3"><i class="bi bi-chevron-left"></i> Back</a>
+<a href="{{ route('show.setSchedule') }}" class="btn btn-primary mb-3"><i class="bi bi-chevron-left"></i> Back</a>
 
 @if (Session::has('success'))
 <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
@@ -52,7 +52,7 @@
 </div>
 @enderror
 
-<section class="p-5 text-dark fs-5 shadow-lg bg-dark border border-dark  rounded-4 bg-opacity-10 border-opacity-10">
+<section class="p-5 text-dark fs-5 shadow-lg bg-light border border-dark rounded-4 border-opacity-10">
 
 
     <div class="alert alert-danger alert-dismissible fade show text-center unactive" id="err" role="alert">
@@ -60,70 +60,33 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 
-    <form action="{{ route('appointment.store') }}" enctype="multipart/form-data" method="POST">
+    <form action="{{ route('schedule.store') }}" enctype="multipart/form-data" method="POST">
         @csrf
-        <div class="card mb-3">
-            <div class="card-header">
-                <h3>Choose A Date</h3>
-            </div>
-            <div class="card-body">
-                <input type="date" class="form-control datetimepicker-input" id="datepicker"
-                    data-toggle="datetimepicker" data-target="#datepicker" name="date" value="{{ old('date') }}">
-            </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Select Date:</label>
+            <input type="date" class="form-control" name="date" id="exampleFormControlInput1">
         </div>
 
-        @foreach ($cabin as $cabins)
-        <div class="row mb-3">
-            <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-body text-center">
-                        <div class="d-flex justify-content-between">
-                            <h5 class="card-title fw-semibold">Cabin {{ $cabins->id }}</h5>
-                            <div class="form-check form-switch">
-                                <input data-id="{{$cabins->id}}" class="form-check-input toggle-class" name="cabin[]"
-                                    type="checkbox" value="{{ $cabins->id }}" {{ $cabins->status == "Open" ?
-                                "checked" :
-                                "" }}>
-                            </div>
-                        </div>
-
-                        @if ($cabins->status == 'Close')
-                        <p class="card-text"><span class="badge bg-danger align-middle">Cabin {{ $cabins->id }}
-                                Close</span>
-                        </p>
-                        @else
-                        <p class="card-text"><span class="badge bg-success align-middle">Cabin {{ $cabins->id }}
-                                Open</span>
-                        </p>
-                        @endif
-
-                        @if ($cabins->status == 'Open')
-                        <div class="row">
-                            @foreach ($session as $sessions)
-                            <div class="col-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="session[{{ $cabins->id }}][]"
-                                        value="{{ $sessions->id }}" id="flexCheckDefault">
-                                    <label class="form-check-label" for="flexCheckDefault">
-                                        <span class="fw-semibold">Session {{ $sessions->id }} </span>
-                                        <p class="lead fs-6"> Time:
-                                            {{\Carbon\Carbon::createFromFormat('H:i:s',$sessions->starttime)->format('g:i
-                                            A')}} -
-                                            {{\Carbon\Carbon::createFromFormat('H:i:s',$sessions->endtime)->format('g:i
-                                            A')}}</p>
-                                    </label>
-                                </div>
-                            </div>
-                            @endforeach
-                        </div>
-                        @else
-                        @endif
-                    </div>
+        <label for="exampleFormControlInput1" class="form-label">Select Session:</label>
+        <div class="row">
+            @foreach ($sessions as $session)
+            <div class="col-4">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="{{ $session->id }}" name="session[]" id="flexCheckDefault">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        <span class="fw-semibold">Session {{ $session->id }} </span>
+                        <p class="lead fs-6"> Time:
+                            {{\Carbon\Carbon::createFromFormat('H:i:s',$session->starttime)->format('g:i
+                            A')}} -
+                            {{\Carbon\Carbon::createFromFormat('H:i:s',$session->endtime)->format('g:i
+                            A')}}</p>
+                    </label>
                 </div>
             </div>
+            @endforeach
         </div>
-        @endforeach
-        <div class="text-center">
+        <div class="text-center mt-3">
             <button class="btn btn-primary px-4">Submit</button>
         </div>
     </form>

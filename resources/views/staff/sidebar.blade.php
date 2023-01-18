@@ -97,7 +97,7 @@
                 </div>
             </a>
 
-            <a href="{{ route('appointment.index') }}" class="text-decoration-none text-dark">
+            <a href="{{ route('schedule.index') }}" class="text-decoration-none text-dark">
                 <div class="mt-3 shadow-sm p-3 rounded-4 mb-2 h6 border border-top" id="sb">
                     <img src="{{ asset('img/appointment.png') }}" alt="icon" class="icon align-middle">
                     <span class="align-middle mx-2">Appointments</span>

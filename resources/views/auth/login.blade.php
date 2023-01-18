@@ -31,7 +31,7 @@
     </div>
 
 
-    <section class="position-absolute top-50 start-50 translate-middle mt-3">
+    <section class="position-absolute top-50 start-50 translate-middle mt-5">
         <div class="container">
             @if (Session::has('error'))
             <div class="alert alert-danger text-center">{{ Session::get('error') }}</div>

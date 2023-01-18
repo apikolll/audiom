@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Schedule;
+use App\Models\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class ScheduleController extends Controller
 {
@@ -14,7 +16,8 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        //
+        $session = Session::all();
+        return view('staff.schedule.index', compact('session'));
     }
 
     /**
@@ -24,7 +27,8 @@ class ScheduleController extends Controller
      */
     public function create()
     {
-        //
+        $sessions = Session::all();
+        return view('staff.schedule.addschedule', compact('sessions'));
     }
 
     /**
@@ -35,7 +39,35 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'date' => 'required|unique:appointments,date,NULL,id',
+            'session' => 'required',
+        ]);
+
+        // $currentdate = Schedule::all();
+        // if($request->date == $currentdate->date){
+
+        // }
+
+        $schedule = Schedule::where('date', $request->date)->first();
+
+        if($schedule){
+            return back()->with('error', "Appointment for ".  Carbon::createFromFormat('Y-m-d', $request->date)->format('M d,
+            Y') . " has been set.");
+        }
+
+        $date = new Schedule();
+        $date->date = $request->date;
+        $date->save();
+
+        $app = Schedule::where('date', $request->date)->first();
+        foreach ($request->session as $session) {
+            $app->sessions()->attach([$session]);
+        }
+
+        return redirect()->route('show.setSchedule')->with('message', 'An appointment created for ' . Carbon::createFromFormat('Y-m-d', $request->date)->format('M d,
+        Y'));
+
     }
 
     /**
@@ -67,9 +99,17 @@ class ScheduleController extends Controller
      * @param  \App\Models\Schedule  $schedule
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Schedule $schedule)
+    public function update(Request $request, $id)
     {
-        //
+        $id = Schedule::where('id', $id)->first();
+        $date = $id->date;
+        $app = Schedule::where('date', $date)->first();
+        
+        $date = $request->session;
+        $app->sessions()->sync($date);
+
+        return redirect()->route('show.setSchedule')->with('message', 'Successfully updated');
+
     }
 
     /**
@@ -81,5 +121,30 @@ class ScheduleController extends Controller
     public function destroy(Schedule $schedule)
     {
         //
+    }
+
+    public function showSchedule()
+    {
+        return view('staff.schedule.checkschedule');
+    }
+
+    public function check(Request $request)
+    {
+        $request->validate([
+            'date' => 'required'
+        ]);
+        
+        $date = $request->date;
+        $schedule = Schedule::where('date', $date)->first();
+        $sessions = Schedule::with(['sessions'])->where('date', $date)->get();
+        $allsessions = Session::all();
+
+        if(!$schedule){
+            return back()->with('errMessage', 'Session for '. Carbon::createFromFormat('Y-m-d', $request->date)->format('M d,
+                Y') .' is not set');
+        }
+
+        return view('staff.schedule.checkschedule', compact('sessions', 'date', 'allsessions'));
+
     }
 }

@@ -26,7 +26,7 @@
         <a href="{{ route('homepage.page') }}"><img src="img/logo.png" alt="logoIIUM" style="width:6rem; height:6rem;"></a>
     </div>
 
-    <section class="position-absolute top-50 start-50 translate-middle mt-3">
+    <section class="position-absolute top-50 start-50 translate-middle mt-5">
         <div class="container">
             <div class="card">
                 <div class="card-body">

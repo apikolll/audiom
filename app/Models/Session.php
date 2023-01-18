@@ -19,7 +19,7 @@ class Session extends Model
     }
     
     public function schedules(){
-        return $this->belongsToMany(Schedule::class, 'sessions_schedules', 'schedule_id', 'session_id');
+        return $this->belongsToMany(Schedule::class, 'sessions_schedules', 'session_id', 'schedule_id');
     }
 
 }
