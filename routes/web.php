@@ -78,7 +78,7 @@ Route::group(['middleware' => ['auth', 'user:staff']], function () {
     Route::resource('patient', PatientController::class);
     Route::resource('appointment', AppointmentController::class);
     Route::resource('session', SessionController::class);
-    Route::resource('cabin', CabinController::class);
+    Route::resource('schedule', ScheduleController::class);
 
     Route::get('changeStatus', [TestController::class, 'changeStatus']);
 

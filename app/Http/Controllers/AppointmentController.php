@@ -38,9 +38,9 @@ class AppointmentController extends Controller
     public function create()
     {
         // $session = Session::all();
-        $cabin = Cabin::all();
+        // $cabin = Cabin::all();
         $session = Session::all();
-        return view('staff.appointment.addappointment', compact('cabin', 'session'));
+        return view('staff.appointment.addappointment', compact('session'));
     }
 
     /**
@@ -172,7 +172,7 @@ class AppointmentController extends Controller
         // choose selected with table session and cabin [ need to use get method to get a collection]
         $appointments = Appointment::where('date', '=', $request->date)->with('session', 'cabin')->get();
 
-        $cabin = Cabin::all();
+        // $cabin = Cabin::all();
         $session = Session::all();
 
         // check if date is not selected

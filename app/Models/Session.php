@@ -12,28 +12,14 @@ class Session extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'cabin_id',
-        'starttime',
-        'endtime'
-    ];
-
-    // public function getEventStartAttribute()
-    // {
-    //     return $this->date_of_event->format('F j, Y') . ' ' .$this->start->format('g:i A');
-    // }
-
-    // public function cabin(){
-    //     return $this->belongsToMany(Cabin::class);
-    // }
-
-    // public function appointment(){
-    //     return $this->belongsTo(Appointment::class);
-    // }
-
+    protected $guarded = [];
 
     public function appointments(){
         return $this->hasMany(Appointments::class);
+    }
+    
+    public function schedules(){
+        return $this->belongsToMany(Schedule::class, 'sessions_schedules', 'schedule_id', 'session_id');
     }
 
 }

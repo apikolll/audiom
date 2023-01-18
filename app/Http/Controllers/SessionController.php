@@ -16,9 +16,8 @@ class SessionController extends Controller
      */
     public function index()
     {
-        // $session = Session::all();
-
-        // return view('staff.appointment.addappointment', compact('session'));
+        // $session = new Session();
+        
     }
 
     /**
