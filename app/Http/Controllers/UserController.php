@@ -18,22 +18,25 @@ class UserController extends Controller
     // function to register user
     public function createUser(UserCreateRequest $request)
     {
+
         $user = new User();
         $user->email = $request->email;
         $user->name = $request->name;
+        $user->role = "patient";
         $user->password = Hash::make($request->password);
-
-        if ($request->roleuser == 'patient') {
-            $user->role = "patient";
-        } elseif ($request->roleuser == 'staff') {
-            $user->role = "staff";
-        } elseif ($request->roleuser == 'doctor') {
-            $user->role = "doctor";
-        }
         $user->save();
 
+        // if ($request->roleuser == 'patient') {
+        //     $user->role = "patient";
+        // } elseif ($request->roleuser == 'staff') {
+        //     $user->role = "staff";
+        // } elseif ($request->roleuser == 'doctor') {
+        //     $user->role = "doctor";
+        // }
+        // $user->save();
+
         $patient = new Patient();
-        $staff = new Staff();
+        // $staff = new Staff();
 
         if ($user->role == 'patient') {
             $patient->user_id = $user->id;
@@ -42,9 +45,9 @@ class UserController extends Controller
             return redirect()->route('patient.page');
 
         } elseif ($user->role == 'staff') {
-            $staff->user_id = $user->id;
-            $staff->name = $request->name;
-            $staff->save();
+            // $staff->user_id = $user->id;
+            // $staff->name = $request->name;
+            // $staff->save();
             return redirect()->route('staff.page');
 
         } elseif ($user->role == 'doctor') {
@@ -55,7 +58,6 @@ class UserController extends Controller
     // function to login user
     public function customLogin(Request $request)
     {
-
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required',

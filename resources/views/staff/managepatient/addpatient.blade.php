@@ -38,6 +38,20 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
+                    <label class="mb-2">Age:</label>
+                    <input class="form-control bg-light" type="text" name="age" placeholder="Age" required>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="mb-2">Date of Birth:</label>
+                    <input class="form-control bg-light" type="date" name="dob" placeholder="Date of Birth" required>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
                     <label class="mb-2">Contact No:</label>
                     <input class="form-control bg-light" type="text" name="contact" placeholder="Contact No" required>
                 </div>
@@ -61,13 +75,13 @@
                     <label class="mb-2">Select Gender:</label>
                     <div class="d-flex gap-2">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault1">
+                            <input class="form-check-input" type="radio" value="male" name="gender" id="flexRadioDefault1">
                             <label class="form-check-label" for="male">
                                 Male
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="gender" id="flexRadioDefault2">
+                            <input class="form-check-input" type="radio" value="female" name="gender" id="flexRadioDefault2">
                             <label class="form-check-label" for="flexRadioDefault2">
                                 Female
                             </label>
@@ -117,7 +131,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label class="mb-2">Picture</label>
-                    <input class="form-control bg-light" type="file" name="image" required>
+                    <input class="form-control bg-light" type="file" name="image">
                 </div>
             </div>
         </div>
@@ -131,7 +145,7 @@
             </div>
         </div>
         <div class="text-center mt-4">
-            <button class="btn btn-success mt-3 px-4 shadow">Save</button>
+            <button class="btn btn-success mt-3 px-4 shadow" type="submit">Save</button>
             <a href="{{ route('patient.index') }}" class="btn btn-secondary mt-3 px-4 shadow">Discard</a>
         </div>
     </form>

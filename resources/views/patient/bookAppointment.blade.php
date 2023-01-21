@@ -6,14 +6,6 @@
         <span class="display-3 fw-bold">Book Appointments</span>
     </div>
 
-    {{-- <div class="d-block"> --}}
-        @foreach($times as $time)
-        <a href="#" class="btn btn-primary mb-3 mx-2" role="button" data-bs-toggle="button" style="width: 10rem">{{
-            $time->time }}</a>
-        {{-- <button class="btn btn-primary mb-3 mx-2"></button> --}}
-        @endforeach
-        {{--
-    </div> --}}
 </div>
 
 @endsection

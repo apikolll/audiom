@@ -11,6 +11,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 
     <link rel="stylesheet" href="{{ asset('css/sb.css') }}">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+
+    <style>
+        body {
+            font-family: 'Poppins';
+            font-size: 22px;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -23,26 +33,26 @@
         <div class="p-3 text-dark h2">
             <div class="d-flex align-items-center">
                 <img src="{{ asset('img/logo.png') }}" alt="logoIIUM" class="top">
-                <div class="d-block mx-2">
-                    <h5 class="fw-semibold">IIUM</h5>
-                    <h6 class="fw-light">Hearing & Speech Clinic</h6>
+                <div class="d-col-flex mx-2">
+                    <span class="fs-5 fw-bold">IIUM</span>
+                    <span class="fs-6 d-block">Hearing & Speech Clinic</span>
                 </div>
                 <i class="h4 bi bi-layout-text-sidebar-reverse icon1 ms-auto" id="close"></i>
                 {{-- <i class="h3 text-light bi bi-list icon1 ms-auto"></i> --}}
             </div>
 
             <div class="dropdown">
-                <div class="mt-3 d-flex align-items-middle gap-3 justify-content-center border border-top rounded-4 shadow-sm pt-2"
+                <div class="mt-3 d-flex justify-content-center align-items-center border border-top rounded-4 shadow-sm pt-2"
                     type="button" data-bs-toggle="dropdown">
                     @if (auth()->user()->staff->image)
                     <img src="{{ Storage::url(auth()->user()->staff->image) }}"
                         class="dp rounded-circle ms border border-dark">
                     @else
-                    <i class="bi bi-person-circle h1"></i>
+                    <i class="bi bi-person-circle h1 mx-2"></i>
                     @endif
                     <div class="d-block">
-                        <h6>Hi, <b>{{ auth()->user()->staff->name }}</b></h6>
-                        <h6 class="text-muted">{{ auth()->user()->email }}</h6>
+                        <h1 class="fs-6 fw-bold">Hi, <b>{{ auth()->user()->staff->name }}</b></h1>
+                        <h1 class="text-muted" style="font-size: 14px">{{ auth()->user()->email }}</h1>
                     </div>
                 </div>
                 <ul class="dropdown-menu w-100 rounded-top rounded-4 shadow" style="transition: all .6s;">
@@ -97,7 +107,7 @@
                 </div>
             </a>
 
-            <a href="{{ route('schedule.index') }}" class="text-decoration-none text-dark">
+            <a href="{{ route('app.index') }}" class="text-decoration-none text-dark">
                 <div class="mt-3 shadow-sm p-3 rounded-4 mb-2 h6 border border-top" id="sb">
                     <img src="{{ asset('img/appointment.png') }}" alt="icon" class="icon align-middle">
                     <span class="align-middle mx-2">Appointments</span>

@@ -23,50 +23,53 @@
     </div>
 
     <div class="position-absolute start-50 translate-middle">
-        <a href="{{ route('homepage.page') }}"><img src="img/logo.png" alt="logoIIUM" style="width:6rem; height:6rem;"></a>
+        <a href="{{ route('homepage.page') }}"><img src="img/logo.png" alt="logoIIUM"
+                style="width:6rem; height:6rem;"></a>
     </div>
 
     <section class="position-absolute top-50 start-50 translate-middle mt-5">
         <div class="container">
-            <div class="card">
+            <div class="card ">
                 <div class="card-body">
-                    <div class="card-title h2 text-center mb-4 d-none d-lg-block">
-                        Create an account
+                    <div class="card-title h3 text-center my-3 d-none d-lg-block">
+                        Patient Registration
                     </div>
 
-                    <form action="{{ route('register.custom') }}" method="post" class="needs-validation" novalidate>
+                    <form action="{{ route('register.custom') }}" method="POST" class="needs-validation" novalidate>
                         @csrf
-                        <div class="form-floating mb-3">
-                            <input type="email" name="email" class="form-control" id="floatingInput"
-                                placeholder="name@example.com" value="{{ old('email') }}" required>
-                            <label for="floatingInput">Email address</label>
+                        <div class="mb-3">
+                            <label for="email" class="form-label fw-bold">Email address</label>
+                            <input type="email" name="email" class="form-control py-2" id="email" placeholder="Email"
+                                value="{{ old('email') }}" required>
                             @error('email')
-                                <div class="text-danger">
-                                    {{ $message }}
-                                </div>
+                            <div class="text-danger">
+                                {{ $message }}
+                            </div>
                             @enderror
                         </div>
-                        <div class="form-floating mb-3">
-                            <input type="text" name="name" class="form-control" id="floatingInput"
-                                placeholder="Name" value="{{ old('name') }}" required>
-                            <label for="floatingInput">Name</label>
+
+                        <div class="mb-3">
+                            <label for="name" class="form-label fw-bold">Name</label>
+                            <input type="text" name="name" class="form-control py-2" id="name" placeholder="Name"
+                                value="{{ old('name') }}" required>
                             @error('name')
-                                <div class="text-danger">
-                                    {{ $message }}
-                                </div>
+                            <div class="text-danger">
+                                {{ $message }}
+                            </div>
                             @enderror
                         </div>
-                        <div class="form-floating mb-4">
-                            <input type="password" name="password" class="form-control" id="floatingPassword"
+
+                        <div class="mb-3">
+                            <label for="password" class="form-label fw-bold">Password</label>
+                            <input type="password" name="password" class="form-control py-2" id="password"
                                 placeholder="Password" required>
-                            <label for="floatingPassword">Password</label>
                             @error('password')
-                                <div class="text-danger">
-                                    {{ $message }}
-                                </div>
+                            <div class="text-danger">
+                                {{ $message }}
+                            </div>
                             @enderror
                         </div>
-                        <div class="h4 d-flex justify-content-center">
+                        {{-- <div class="h4 d-flex justify-content-center">
                             You are a :
                         </div>
                         <div class="d-flex justify-content-evenly">
@@ -87,13 +90,13 @@
                             </div>
                         </div>
                         @error('roleuser')
-                            <div class="text-danger">
-                                {{ $message }}
-                            </div>
-                        @enderror
+                        <div class="text-danger">
+                            {{ $message }}
+                        </div>
+                        @enderror --}}
 
-                        <div class="text-center mb-2 mt-3">
-                            <button class="btn btn-dark fs-4 p-2 px-4 s-2 w-100 bg-dark text-light">Create
+                        <div class="text-center my-3">
+                            <button class="btn btn-outline-success fs-5 p-2 px-4 s-2 w-100" type="submit">Create
                                 account</button>
                         </div>
                         <div class="text-center text-secondary mt-3">Already have an account?<a href="login"

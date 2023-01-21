@@ -16,8 +16,7 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        $session = Session::all();
-        return view('staff.schedule.index', compact('session'));
+        return view('staff.schedule.checkschedule');
     }
 
     /**
@@ -40,7 +39,7 @@ class ScheduleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'date' => 'required|unique:appointments,date,NULL,id',
+            'date' => 'required|unique:schedules,date,NULL,id',
             'session' => 'required',
         ]);
 
@@ -65,7 +64,7 @@ class ScheduleController extends Controller
             $app->sessions()->attach([$session]);
         }
 
-        return redirect()->route('show.setSchedule')->with('message', 'An appointment created for ' . Carbon::createFromFormat('Y-m-d', $request->date)->format('M d,
+        return redirect()->route('schedule.showSchedule')->with('message', 'An appointment created for ' . Carbon::createFromFormat('Y-m-d', $request->date)->format('M d,
         Y'));
 
     }
@@ -108,7 +107,7 @@ class ScheduleController extends Controller
         $date = $request->session;
         $app->sessions()->sync($date);
 
-        return redirect()->route('show.setSchedule')->with('message', 'Successfully updated');
+        return redirect()->route('schedule.showSchedule')->with('message', 'Successfully updated');
 
     }
 

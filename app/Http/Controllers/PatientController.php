@@ -19,7 +19,7 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $patients = Patient::all();
+        $patients = Patient::with('users')->get();
 
         if (auth()->user()->role === "staff") {
             return view('staff.managepatient.patient', compact('patients'));
@@ -187,8 +187,8 @@ class PatientController extends Controller
     }
 
     public function bookAppointment(){
-        $times = Time::all();
-        return view('patient.bookAppointment', compact('times'));
+        // $times = Time::all();
+        return view('patient.bookAppointment');
     }
 
     // public function displayTime(){

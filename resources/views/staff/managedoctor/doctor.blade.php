@@ -5,6 +5,10 @@
 <section class="pt-5">
     <div class="container">
 
+        <ul class="nav mb-3">
+            <li> <h2 class="text-light nav-item fs-5 {{ 'doctor' ==  request()->path() ? 'border-bottom' : '' }}">Doctors</h2></li>
+         </ul>
+
         @if(Session::has('success'))
         <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
             {{ Session::get('success') }}
@@ -15,7 +19,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="card-title d-flex justify-content-between">
-                    <h3>All Doctors</h3>
+                    <span class="fs-5">All Doctors</span>
                     <a href="{{ route('doctor.create') }}" class="text-decoration-none">
                         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#newAppointment"><i
                                 class="bi bi-plus-lg"></i> Doctor</button>
@@ -25,9 +29,9 @@
                     <table class="table table-hover">
                         <thead>
                             <tr class="text-center">
-                                <th class="text-muted">NAME</th>
-                                <th class="text-muted">ADDRESS </th>
-                                <th class="text-muted">Contact No</th>
+                                <th class="text-muted fs-6">NAME</th>
+                                <th class="text-muted  fs-6">ADDRESS </th>
+                                <th class="text-muted  fs-6">Contact No</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -63,7 +67,7 @@
                         @endforeach
                         @else
                         <tr>
-                            <td colspan="5" class="text-center">No Data Found</td>
+                            <td colspan="5" class="text-center fs-6">No Data Found</td>
                         </tr>
                         @endif
                     </table>

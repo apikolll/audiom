@@ -15,7 +15,7 @@
 <div class="text-center text-light">
     <h3 class="display-3 fw-bold">Create new Schedule</h3>
 </div>
-<a href="{{ route('show.setSchedule') }}" class="btn btn-primary mb-3"><i class="bi bi-chevron-left"></i> Back</a>
+<a href="{{ route('schedule.showSchedule') }}" class="btn btn-primary mb-3"><i class="bi bi-chevron-left"></i> Back</a>
 
 @if (Session::has('success'))
 <div class="alert alert-success alert-dismissible fade show text-center" role="alert">

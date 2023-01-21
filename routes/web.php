@@ -1,17 +1,16 @@
 <?php
 
+use App\Http\Controllers\AppController;
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\DoctorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\StaffController;
-use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\SessionController;
-use App\Http\Controllers\TestController;
-use App\Http\Controllers\CabinController;
 use App\Http\Controllers\ScheduleController;
-use App\Models\Appointment;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -58,7 +57,6 @@ Route::group(['middleware' => ['auth', 'user:patient']], function () {
     });
 
     Route::resource('patients', PatientController::class);
-    Route::resource('appointments', AppointmentController::class);
     
 });
 
@@ -70,21 +68,26 @@ Route::group(['middleware' => ['auth', 'user:staff']], function () {
         Route::post('/changepass', 'updatePassword')->name('update.password');
     });
 
-    // Route::post('/appointment/check', [AppointmentController::class, ('check')])->name('appointment.check');
-    Route::get('/showSchedule', [ScheduleController::class, 'showSchedule'])->name('show.setSchedule');
-    Route::post('/check', [ScheduleController::class, 'check'])->name('schedule.check');
+    Route::controller(AppController::class)->group(function(){
+        Route::get('app', 'index')->name('app.index');
+        Route::get('app/create', 'create')->name('app.create');
+        Route::post('app/check', 'checkSessions')->name('app.check');
+        Route::post('app/store', 'storeAppointment')->name('app.store');
+    });
+
+    Route::get('/schedule/showSchedule', [ScheduleController::class, 'showSchedule'])->name('schedule.showSchedule');
+    Route::post('/schedule/check', [ScheduleController::class, 'check'])->name('schedule.check');
 
     Route::resource('staff', StaffController::class);
     Route::resource('doctor', DoctorController::class);
     Route::resource('patient', PatientController::class);
-    Route::resource('appointment', AppointmentController::class);
     Route::resource('session', SessionController::class);
     Route::resource('schedule', ScheduleController::class);
+    // Route::resource('appointment', AppointmentController::class);
 
-    Route::get('changeStatus', [TestController::class, 'changeStatus']);
-
-    // Route::post('store/{$id}', [SessionController::class, 'store'])->name('session.store');
-
+    // Route::post('/masuk', [MasukController::class, 'robinbabi'])->name('robin.masuk');
+    // Route::post('/appointment/check', [AppointmentController::class, 'checkSessions'])->name('appointment.check');
+    // Route::post('/appointment/store-appointment', [AppointmentController::class, 'storeAppointment'])->name('appointment.store-appointment');
 });
 
 Route::group(['middleware' => ['auth', 'user:doctor']], function () {

@@ -14,10 +14,17 @@ return new class extends Migration
     public function up()
     {
         Schema::create('appointments', function (Blueprint $table) {
-            $table->increments('id');
-            $table->date('date');
-            $table->integer('session_id')->unsigned();
+            $table->string('name');
+            $table->unsignedInteger('patient_id');
+            $table->unsignedInteger('cabin');
+            $table->string('description');
+            $table->unsignedInteger('session_id');
+            $table->unsignedInteger('schedule_id');
+            $table->primary(['patient_id', 'cabin', 'session_id', 'schedule_id']);
+            $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade');
             $table->foreign('session_id')->references('id')->on('sessions')->onDelete('cascade');
+            $table->foreign('schedule_id')->references('id')->on('schedules')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }

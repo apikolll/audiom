@@ -30,15 +30,16 @@
             </div>
 
             <div class="dropdown">
-                <div class="mt-3 d-flex align-items-middle justify-content-center gap-3 border border-top rounded-4 shadow-sm pt-2"
+                <div class="mt-3 d-flex align-items-middle gap-3 justify-content-center border border-top rounded-4 shadow-sm pt-2"
                     type="button" data-bs-toggle="dropdown">
                     @if (auth()->user()->patient->image)
                     <img src="{{ Storage::url(auth()->user()->patient->image) }}"
                         class="dp rounded-circle ms border border-dark">
+                    @else
+                    <i class="bi bi-person-circle h1"></i>
                     @endif
                     <div class="d-block">
-                        <h6 class="text-truncate" style="max-width: 200px;">Hi, <b>{{ auth()->user()->patient->name
-                                }}</b></h6>
+                        <h6>Hi, <b>{{ auth()->user()->patient->name }}</b></h6>
                         <h6 class="text-muted">{{ auth()->user()->email }}</h6>
                     </div>
                 </div>

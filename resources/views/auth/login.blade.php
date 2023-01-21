@@ -49,6 +49,7 @@
 
                     <form action="{{ route('login.custom') }}" method="post" class="needs-validation" novalidate>
                         @csrf
+                        
                         <div class="form-floating mb-3">
                             <input type="email" name="email" class="form-control" id="floatingInput" placeholder="Email"
                                 value="{{ old('email') }}" required>
@@ -73,7 +74,9 @@
                                     class="text-decoration-none fs-6">Forgot password?</a></div>
                         </div>
                         <div class="text-center mb-2">
-                            <button class="btn btn-dark p-2 px-4 s-2 w-100 fs-4 bg-dark text-light">Log in</button>
+                            <div class="text-center my-3">
+                                <button class="btn btn-outline-success fs-5 p-2 px-4 s-2 w-100">Log In</button>
+                            </div>
                         </div>
 
                         <div class="text-center text-secondary mt-3">No account?<a href="register"

@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('staff', function (Blueprint $table) {
-            $table->id();
-            $table->integer('user_id')->unsigned()->nullable();
+            $table->increments('id');
+            $table->unsignedInteger('user_id');
             $table->string('name');
             $table->string('age')->nullable();
             $table->string('image')->nullable();
@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('race')->nullable();
             $table->string('contact')->nullable();
             $table->string('address')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

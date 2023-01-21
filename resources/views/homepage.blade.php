@@ -221,7 +221,7 @@
 <footer class="bg-dark bg-opacity-75 text-light">
     <div class="p-3">
         <div class="d-md-flex justify-content-evenly">
-            <div class="d-block">
+            <div class="d-block mb-3">
                 <h3 class="text-center">Our Social:</h3>
                 <div class="mt-4 d-flex gap-5 justify-content-center align-items-center">
                     <i class="h3 bi bi-twitter"></i>
@@ -229,15 +229,15 @@
                     <i class="h3 bi bi-facebook"></i>
                 </div>
             </div>
-            <div class="d-block">
-                <h3>Contact us</h3>
+            <div class="d-block mb-3">
+                <h3 class="text-center">Contact us</h3>
                 <p><i class="bi bi-house"></i> International Islamic University Malaysia</p>
                 <p><i class="bi bi-envelope"></i> afiqnrzm@hotmail.com</p>
                 <p><i class="bi bi-telephone"></i> 09-5177627</p>
             </div>
             <div class="d-md-block">
-                <h3>Location</h3>
-                <iframe class="rounded-3" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3980.8787474365618!2d103.30240291482082!3d3.836194149614378!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31c8ba517cb18f45%3A0xd13384f9d78197e3!2sAudiology%20Clinic%2C%20IIUM%20Medical%20Centre%20(IIUMMC)!5e0!3m2!1sen!2smy!4v1673880798756!5m2!1sen!2smy" width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <h3 class="text-center">Location</h3>
+                <iframe class="rounded-3" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3980.8787474365618!2d103.30240291482082!3d3.836194149614378!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31c8ba517cb18f45%3A0xd13384f9d78197e3!2sAudiology%20Clinic%2C%20IIUM%20Medical%20Centre%20(IIUMMC)!5e0!3m2!1sen!2smy!4v1673880798756!5m2!1sen!2smy" width="350" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 {{-- <p><i class="bi bi-house"></i> International Islamic University Malaysia</p>
                 <p><i class="bi bi-envelope"></i> afiqnrzm@hotmail.com</p>
                 <p><i class="bi bi-telephone"></i> 09-5177627</p> --}}
@@ -270,7 +270,7 @@
         for (var i = 0; i < reveals.length; i++) {
             var windowHeight = window.innerHeight;
             var elementTop = reveals[i].getBoundingClientRect().top;
-            var elementVisible = 150;
+            var elementVisible = 100;
 
              if (elementTop < windowHeight - elementVisible) {
                 reveals[i].classList.add("active");
