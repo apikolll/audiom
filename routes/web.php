@@ -58,6 +58,9 @@ Route::group(['middleware' => ['auth', 'user:patient']], function () {
 
     Route::resource('patients', PatientController::class);
     
+    Route::get('patient/detail', [PatientController::class, 'detail'])->name('patient.detail');
+    Route::get('patient/appointment', [PatientController::class, 'appointment'])->name('patient.appointment');
+    
 });
 
 Route::group(['middleware' => ['auth', 'user:staff']], function () {

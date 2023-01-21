@@ -10,6 +10,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 
     <link rel="stylesheet" href="{{ asset('css/sb.css') }}">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+
+    <style>
+        body {
+            font-family: 'Poppins';
+        }
+        
+    </style>
 </head>
 
 <body>
@@ -21,9 +30,9 @@
         <div class="p-3 text-dark h2">
             <div class="d-flex align-items-center">
                 <img src="{{ asset('img/logo.png') }}" alt="logoIIUM" class="top">
-                <div class="d-block mx-2">
-                    <h5 class="fw-semibold">IIUM</h5>
-                    <h6 class="fw-light">Heaing & Speech Clinic</h6>
+                <div class="d-col-flex mx-2">
+                    <span class="fs-5 fw-bold">IIUM</span>
+                    <span class="fs-6 d-block">Hearing & Speech Clinic</span>
                 </div>
                 <i class="h4 bi bi-layout-text-sidebar-reverse icon1 ms-auto" id="close"></i>
                 {{-- <i class="h3 text-light bi bi-list icon1 ms-auto"></i> --}}
@@ -77,7 +86,7 @@
             <a href="{{ route('book.appointment') }}" class="text-decoration-none text-dark">
                 <div class="mt-3 shadow-sm p-3 rounded-4 mb-2 h6 border border-top" id="sb">
                     <img src="{{ asset('img/doctor.png') }}" alt="icon" class="icon align-middle">
-                    <span class="align-middle mx-2">Book appointment</span>
+                    <span class="align-middle mx-2">Appointments</span>
                 </div>
             </a>
         </div>

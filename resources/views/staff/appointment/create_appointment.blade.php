@@ -40,7 +40,7 @@
             Y')}}</span> --}}
         <div class="mb-3 mt-3">
             <label for="name" class="form-label">Patient's Name:</label>
-            <input type="text" name="name" class="form-control" id="name" placeholder="Patient's Name">
+            <input type="text" name="name" class="form-control" id="name" placeholder="Patient's Name" required>
         </div>
         <div class="mb-3">
             <p>Available Session:</p>
@@ -51,7 +51,7 @@
                         <div class="col-4">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" value="{{ $session->id }}"
-                                    id="flexRadioDefault1" name="session">
+                                    id="flexRadioDefault1" name="session" required>
                                 <label class="form-check-label" for="flexRadioDefault1">
                                     Session {{ $session->id }}
                                     <p class="lead fs-6"> Time:
@@ -76,7 +76,7 @@
                         <div class="col-4">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="cabin" value=1
-                                    id="flexRadioDefault1">
+                                    id="flexRadioDefault1" >
                                 <label class="form-check-label" for="flexRadioDefault1">
                                     Cabin 1
                                 </label>
@@ -106,7 +106,7 @@
         </div>
         <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">Description:</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
         </div>
         <div class="text-center mt-5">
             <button type="submit" class="btn btn-outline-primary px-4">Book</button>

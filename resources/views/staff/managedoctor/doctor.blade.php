@@ -28,8 +28,8 @@
                 <div class="card-text">
                     <table class="table table-hover">
                         <thead>
-                            <tr class="text-center">
-                                <th class="text-muted fs-6">NAME</th>
+                            <tr class="text-start">
+                                <th class="text-muted fs-6">DOCTOR</th>
                                 <th class="text-muted  fs-6">ADDRESS </th>
                                 <th class="text-muted  fs-6">Contact No</th>
                                 <th></th>
@@ -39,15 +39,22 @@
                         @if (count($doctor) > 0)
 
                         @foreach ($doctor as $doctors)
-                        <tbody class="text-center">
+                        <tbody class="text-start fs-6">
                             <tr>
-                                <td class="text-start text-center">
+                                <td>
+                                <div class="d-flex gap-3 align-items-center">
                                     @if ($doctors->image)
-                                    <img src="{{ asset($doctors->image) }}" class="rounded-circle ms border border-dark" style="width: 40px;height:39px; margin-right:10px;">
+                                    <img src="{{ Storage::url($doctors->image) }}" alt="dp" class="rounded-circle"
+                                        style="width: 50px;height:50px">
+                                    @else
+                                    <i class="bi bi-person-circle display-6"></i>
                                     @endif
-                                    {{ $doctors->name }}
-                                </td>
-
+                                    <div class="d-block text-start">
+                                        <span class="fs-6 d-block">{{ $doctors->name }}</span>
+                                        <span class="fs-6 d-block text-secondary">{{ $doctors->users->email }}</span>
+                                    </div>
+                                </div>
+                            </td>
                                 <td class="text-truncate align-middle" style="max-width: 150px;">{{ $doctors->address }}</td>
                                 <td class="align-middle">{{ $doctors->contact }}</td>
                                 <td>

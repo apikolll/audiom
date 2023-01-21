@@ -7,7 +7,7 @@
 </div>
 <a href="{{ URL::previous() }}" class="btn btn-primary mb-3"><i class="bi bi-chevron-left"></i> Back</a>
 
-<section class="p-5 text-light fs-5 shadow-lg bg-dark border border-dark  rounded-4 bg-opacity-10 border-opacity-10">
+<section class="p-5 text-dark fs-5 shadow-lg bg-light border border-dark rounded-4 border-opacity-10 fs-6">
     <form action="{{ route('doctor.update', $doctor->id) }}" enctype="multipart/form-data" method="POST">
         @csrf
         @method('PUT')

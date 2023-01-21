@@ -14,7 +14,7 @@
     }
 </style>
 
-<section class="pt-5">
+<section class="pt-5 fs-6">
     <div class="container">
 
         <ul class="nav mb-3">
@@ -39,10 +39,10 @@
                 <table class="table table-hover">
                     <thead>
                         <tr class="bg-secondary bg-opacity-10">
-                            <th scope="col fs-6">Patient</th>
-                            <th scope="col fs-6">Appointment At</th>
-                            <th scope="col fs-6">Status</th>
-                            <th scope="col fs-6">Action</th>
+                            <th scope="col " class="text-muted">Patient</th>
+                            <th scope="col " class="text-muted">Appointment At</th>
+                            <th scope="col " class="text-muted">Status</th>
+                            <th scope="col " class="text-muted">Action</th>
                         </tr>
                     </thead>
                     <tbody class="align-middle">

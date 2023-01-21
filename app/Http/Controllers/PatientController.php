@@ -90,8 +90,13 @@ class PatientController extends Controller
     public function show(Patient $patient)
     {
         // $patient = Patient::find($id);
+        if(auth()->user()->role === "staff"){
+            return view('staff.managepatient.detailpatient', compact('patient'));
+        }else if(auth()->user()->role === "patient"){
+            return view('patient.detail', compact('patient'));
+        }
 
-        return view('staff.managepatient.detailpatient', compact('patient'));
+       
     }
 
     /**
@@ -143,7 +148,12 @@ class PatientController extends Controller
         $patient->address = $request->address;
         $patient->save();
 
-        return redirect()->route('patient.index')->with('success', 'Successfully updated this profile');
+        if (auth()->user()->role === "staff") {
+            return redirect()->route('patient.index')->with('success', 'Successfully updated this profile');
+        } else if (auth()->user()->role === "patient") {
+            return redirect()->route('patients.index')->with('success', 'Successfully updated this profile');
+        }
+       
     }
 
     /**
@@ -191,8 +201,11 @@ class PatientController extends Controller
         return view('patient.bookAppointment');
     }
 
-    // public function displayTime(){
-    //     $times = Time::all();
-    //     return view('patient.bookAppointment', compact('times'));
-    // }
+    public function detail(){
+        return view('patient.detail');
+    }
+
+    public function appointment(){
+        
+    }
 }

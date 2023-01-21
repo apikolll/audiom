@@ -15,7 +15,7 @@
 </div>
 @endif
 
-<section class="p-5 text-light fs-5 shadow-lg bg-dark border border-dark  rounded-4 bg-opacity-10 border-opacity-10">
+<section class="p-5 text-dark fs-5 shadow-lg bg-light border border-dark rounded-4 border-opacity-10 fs-6">
     <form action="{{ route('patients.update', $patient->id) }}" enctype="multipart/form-data" method="POST">
         @csrf
         @method('PUT')

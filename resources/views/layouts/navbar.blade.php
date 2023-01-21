@@ -13,7 +13,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Yeseva+One&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/style.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+
     <style>
+         body {
+            font-family: 'Poppins';
+        }
         .blur{
             backdrop-filter: blur(10px);
         }
@@ -43,7 +49,7 @@
 
             {{-- Nav Items --}}
             <div class="collapse navbar-collapse text-center" id="navmenu">
-                <ul class="navbar-nav ms-auto fs-5">
+                <ul class="navbar-nav ms-auto fs-6">
                     <li class="nav-item">
                         <a href="/services" class="nav-link text-dark">Services</a>
                     </li>
