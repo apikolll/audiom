@@ -18,7 +18,12 @@ class DoctorController extends Controller
     public function index()
     {
         $doctor = Doctor::all();
-        return view('staff.managedoctor.doctor', compact('doctor'));
+        if(auth()->user()->role === "staff"){
+            return view('staff.managedoctor.doctor', compact('doctor'));
+        }else if(auth()->user()->role === "doctor"){
+            return view('doctor.dashboard');
+        }
+       
     }
 
     /**
@@ -39,17 +44,16 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'contact' => 'required',
-            'race' => 'required',
-            'gender' => 'required',
-            'email' => 'required',
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-            'password' => 'required',
-            'address' => 'required'
-        ]);
-
+        // $request->validate([
+        //     'name' => 'required',
+        //     'gender' => 'required',
+        //     'race' => 'required',
+        //     'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        //     'contact' => 'required',
+        //     'email' => 'required',
+        //     'password' => 'required|confirmed',
+        //     'address' => 'required'
+        // ]);
 
         $user = new User();
         $user->name = $request->name;
@@ -58,15 +62,14 @@ class DoctorController extends Controller
         $user->role = "doctor";
         $user->save();
 
-        $doctor = new Doctor();
-        $doctor->name = $request->name;
-        $doctor->contact = $request->contact;
-        $doctor->race = $request->race;
-        $doctor->image = $request->file('image')->store('doctor', 'public');
-        $doctor->gender = $request->gender;
-        $doctor->address = $request->address;
-        $doctor->user_id = $user->id;
-        $doctor->save();
+        Doctor::create([
+            'name' => $request->name,
+            'user_id' => $user->id,
+            'contact' => $request->contact,
+            'race' => $request->race,
+            'gender' => $request->gender,
+            'address' => $request->address
+        ]);
 
         return redirect()->route('doctor.index')->with('success', 'Successfully Added');
     }

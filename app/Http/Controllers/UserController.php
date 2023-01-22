@@ -51,7 +51,7 @@ class UserController extends Controller
             return redirect()->route('staff.page');
 
         } elseif ($user->role == 'doctor') {
-            return redirect()->route('doctor.page');
+            return redirect()->route('doctors.index');
         }
     }
 
@@ -72,7 +72,7 @@ class UserController extends Controller
             } elseif (auth()->user()->role == "staff") {
                 return redirect()->route('staff.page');
             } elseif (auth()->user()->role == "doctor") {
-                return redirect()->route('doctor.page');
+                return redirect()->route('doctors.index');
             }
         }
         return back()->with('error', 'Email or password is wrong ');

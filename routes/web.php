@@ -95,7 +95,8 @@ Route::group(['middleware' => ['auth', 'user:staff']], function () {
 
 Route::group(['middleware' => ['auth', 'user:doctor']], function () {
     
-    Route::get('/doctor-page', [UserController::class, ('doctor')])->name('doctor.page');
+    Route::resource('doctors', DoctorController::class);
+    // Route::get('/doctor-page', [UserController::class, ('doctor')])->name('doctor.page');
 });
 
 

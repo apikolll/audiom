@@ -74,7 +74,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="mb-2">Password:</label>
-                    <input class="form-control bg-light" type="text" name="password" placeholder="Password" required>
+                    <input class="form-control bg-light" type="password" name="password" placeholder="Password" required>
                 </div>
             </div>
         </div>
@@ -82,7 +82,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label class="mb-2">Picture:</label>
-                    <input class="form-control bg-light" type="file" name="image" required>
+                    <input class="form-control bg-light" type="file" name="image">
                 </div>
             </div>
         </div>
@@ -95,7 +95,7 @@
             </div>
         </div>
         <div class="text-center mt-4">
-            <button class="btn btn-success mt-3 px-4 shadow">Save</button>
+            <button class="btn btn-success mt-3 px-4 shadow" type="submit">Save</button>
             <a href="{{ route('doctor.index') }}" class="btn btn-secondary mt-3 px-4 shadow">Discard</a>
         </div>
     </form>

@@ -12,7 +12,11 @@
             </li>
           </ul>
 
-          <div class="card p-5">
+          <div class="text-end">
+            <a href="{{ URL::previous() }}" class="btn btn-primary">BACK</a>
+          </div>
+          
+          <div class="card p-5 mt-3">
             <div class="card-body">
                 <div class="row mb-3">
                     <div class="col-6">
