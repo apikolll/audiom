@@ -15,4 +15,8 @@ class Schedule extends Model
     public function sessions(){
         return $this->belongsToMany(Session::class, 'sessions_schedules', 'schedule_id', 'session_id');
     }
+
+    public function appointment(){
+        return $this->hasOne(Appointment::class);
+    }
 }

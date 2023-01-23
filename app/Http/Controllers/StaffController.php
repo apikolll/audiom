@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Doctor;
@@ -22,7 +23,8 @@ class StaffController extends Controller
         $staff = Staff::all()->count();
         $doctor = Doctor::all()->count();
         $patient = Patient::all()->count();
-        return view('staff.dashboard', compact('staff', 'doctor', 'patient'));
+        $appointment = Appointment::all()->count();
+        return view('staff.dashboard', compact('staff', 'doctor', 'patient', 'appointment'));
     }
 
     /**

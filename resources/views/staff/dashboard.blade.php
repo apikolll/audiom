@@ -70,12 +70,13 @@
 </script>
 
 <script>
-    var xValues = ["Appointments", "Doctors", "Patients"];
-    var yValues = [{{ $staff }}, {{ $doctor }}, {{ $patient }}];
+    var xValues = ["Staff", "Doctors", "Patients", "Appointments"];
+    var yValues = [{{ $staff }}, {{ $doctor }}, {{ $patient }}, {{ $appointment }}];
     var barColors = [
       "#b91d47",
       "#00aba9",
       "#2b5797",
+      "#1b5194",
     ];
     
     new Chart("myChart", {

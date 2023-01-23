@@ -8,7 +8,7 @@
 </div>
 
 @if (Session::has('error'))
-<div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+<div class="alert alert-danger alert-dismissible fade show text-center fs-6" role="alert">
     {{ Session::get('error') }}
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
@@ -20,18 +20,37 @@
         <div class="text-center">
             {{-- <input class="btn btn-block" name="date"
                 value="{{\Carbon\Carbon::createFromFormat('Y-m-d', $date)->format('M d, Y')}}"> --}}
-            <input class="btn btn-block" name="date"
-                value="{{$date}}">
+            <input class="btn btn-block" name="date" value="{{$date}}">
         </div>
 
 
         @foreach ($sessions as $session)
         {{-- <span class="mb-4">Date : {{\Carbon\Carbon::createFromFormat('Y-m-d', $session->date)->format('M d,
             Y')}}</span> --}}
-        <div class="mb-3 mt-3">
+        <div class="row mb-3 mt-3">
+            <div class="col-6">
+                <label for="name" class="form-label">Doctor's Name:</label>
+                <select class="form-select" aria-label="Default select example" name="doctor" id="name">
+                    <option selected>Doctor</option>
+                    @foreach ($doctors as $doctor)
+                    <option value="{{ $doctor->id }}">{{ $doctor->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-6">
+                <label for="name" class="form-label">Patient's Name:</label>
+                <select class="form-select" aria-label="Default select example" name="patient" id="name">
+                    <option selected>Patient</option>
+                    @foreach ($patients as $patient)
+                    <option value="{{ $patient->id }}">{{ $patient->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        {{-- <div class="mb-3 mt-3">
             <label for="name" class="form-label">Patient's Name:</label>
             <input type="text" name="name" class="form-control" id="name" placeholder="Patient's Name">
-        </div>
+        </div> --}}
         <div class="mb-3">
             <p>Available Session:</p>
             <div class="card rounded-3 p-4">

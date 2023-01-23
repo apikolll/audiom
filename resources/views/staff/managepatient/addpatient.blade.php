@@ -27,7 +27,7 @@
     </div>
     @enderror
 
-    <form action="{{ route('patient.store') }}" enctype="multipart/form-data" method="POST">
+    <form action="{{ route('patient.store') }}" method="POST">
         @csrf
         <div class="row mb-3">
             <div class="col-md-6">

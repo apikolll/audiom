@@ -10,6 +10,7 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\ScheduleController;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 
 /*
@@ -76,6 +77,9 @@ Route::group(['middleware' => ['auth', 'user:staff']], function () {
         Route::get('app/create', 'create')->name('app.create');
         Route::post('app/check', 'checkSessions')->name('app.check');
         Route::post('app/store', 'storeAppointment')->name('app.store');
+        Route::get('app/show/{id}', 'show')->name('app.show');
+        Route::post('app/{id}/delete', 'delete')->name('app.delete');
+        Route::get('/change-status', 'changeStatus')->name('app.change-status');
     });
 
     Route::get('/schedule/showSchedule', [ScheduleController::class, 'showSchedule'])->name('schedule.showSchedule');
@@ -134,5 +138,9 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
 //     return view('staff.appointments.appointment_time');
 // });
 
-Route::resource('schedule', ScheduleController::class);
-Route::get('/setschedule', [ScheduleController::class, 'showSetSchedule'])->name('set.schedule');
+
+// Route::get('/testid', function(){
+//     $id = IdGenerator::generate(['table' => 'questionnaires', 'length' => 6, 'prefix' => 'Q']);
+
+//     return $id;
+// });

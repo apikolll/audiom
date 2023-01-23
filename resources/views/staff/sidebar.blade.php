@@ -64,13 +64,6 @@
                         </a>
                     </li>
                     <li class="mt-2">
-                        <a class="dropdown-item" href="{{ route('staff.show', auth()->user()->staff->id ) }}">
-                            <img src="{{ asset('img/padlock.png') }}" class="align-middle" alt="icon"
-                                style="width:20px;height:20px;">
-                            <span class="align-middle mx-2">Show</span>
-                        </a>
-                    </li>
-                    <li class="mt-2">
                         <a class="dropdown-item" href="{{ route('change.password') }}">
                             <img src="{{ asset('img/padlock.png') }}" class="align-middle" alt="icon"
                                 style="width:20px;height:20px;">

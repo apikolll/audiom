@@ -46,18 +46,19 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'age' => 'required',
-            'dob' => 'required',
-            'gender' => 'required',
-            'race' => 'required',
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-            'contact' => 'required',
-            'email' => 'required',
-            'password' => 'required|confirmed',
-            'address' => 'required'
-        ]);
+        // $request->validate([
+        //     'name' => 'required',
+        //     'age' => 'required',
+        //     'dob' => 'required',
+        //     'gender' => 'required',
+        //     'race' => 'required',
+        //     'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        //     'contact' => 'required',
+        //     'email' => 'required',
+        //     'password' => 'required|confirmed',
+        //     'address' => 'required'
+        // ]);
+        // dd($request->all());
 
         $user = new User();
         $user->name = $request->name;
@@ -70,7 +71,7 @@ class PatientController extends Controller
         $patient->name = $request->name;
         $patient->age = $request->age;
         $patient->dob = $request->dob;
-        $patient->image = $request->file('image')->store('patient', 'public');
+        // $patient->image = $request->file('image')->store('patient', 'public');
         $patient->gender = $request->gender;
         $patient->race = $request->race;
         $patient->user_id = $user->id;
