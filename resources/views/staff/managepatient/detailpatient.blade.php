@@ -105,9 +105,9 @@
             </div>
             <h3 class="fs-6 text-muted text-end">
                 Join on {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $patient->created_at)->format('M d,
-                    Y g:i
-                    A')}}
-                </h3>
+                Y g:i
+                A')}}
+            </h3>
         </div>
 
     </div>

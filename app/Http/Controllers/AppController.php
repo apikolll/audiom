@@ -18,7 +18,16 @@ class AppController extends Controller
 
     public function index(){
         $appointments = Appointment::all();
-        return view('staff.appointment.index', compact('appointments'));
+        if(auth()->user()->role === 'staff'){
+            return view('staff.appointment.index', compact('appointments'));
+        }
+        else if(auth()->user()->role === 'patient'){
+
+            $id = auth()->user()->patient->id;
+            $appointments = Appointment::where('patient_id', $id)->where('status', 'Pending')->get();
+            return view('patient.bookAppointment', compact('appointments'));
+        }
+       
     }
 
     public function create(){
@@ -37,8 +46,7 @@ class AppController extends Controller
 
         $sessionid = Appointment::pluck('session_id')->first();
         $cabinid = Appointment::pluck('cabin')->first();
-        $scheduleid = Appointment::pluck('schedule_id')->first();
-        
+        $scheduleid = Appointment::pluck('schedule_id')->first();     
         $schedules = Schedule::where('date', $request->date)->first();
 
         if($sessionid == $request->session && $cabinid == $request->cabin && $scheduleid == $schedules->id){
@@ -52,13 +60,18 @@ class AppController extends Controller
             'patient_id' => $request->patient,
             'doctor_id' => $request->doctor,
             'cabin' => $request->cabin,
+            'status' => 'Pending',
             'description' => $request->description,
             'session_id' => $request->session,
             'schedule_id' => $schedules->id
         ]);
 
-        return redirect()->route('app.index')->with('sucess', 'Successfully created');
-
+        if(auth()->user()->role === 'staff'){
+            return redirect()->route('app.index')->with('sucess', 'Successfully created');
+        }else if(auth()->user()->role === 'patient'){
+            return redirect()->route('app-patient.index')->with('success', 'Successfully created');
+        }
+       
     }
 
     public function checkSessions(Request $request)
@@ -78,20 +91,35 @@ class AppController extends Controller
                 Y'));
         }
 
-        return view('staff.appointment.check_appointment', compact('sessions', 'date', 'patients', 'doctors'));
+        if(auth()->user()->role === 'staff'){
+            return view('staff.appointment.check_appointment', compact('sessions', 'date', 'patients', 'doctors'));
+        }else if(auth()->user()->role === 'patient'){
+            return view('patient.addAppointment', compact('sessions', 'date', 'doctors'));
+        }
+        
     }
 
     public function show($id){
         $appointment = Appointment::find($id);
 
-        return view('staff.appointment.details_appointment', compact('appointment'));
+        if(auth()->user()->role === 'staff'){
+            return view('staff.appointment.details_appointment', compact('appointment'));
+        }else if(auth()->user()->role === 'patient'){
+            return view('patient.detail', compact('appointment'));
+        }
     }
+       
 
     public function delete($id){
         $appointment = Appointment::find($id);
         $appointment->delete();
 
-        return redirect()->route('app.index')->with('success' ,'Successfully deleted');
+        if(auth()->user()->role === 'staff'){
+            return redirect()->route('app.index')->with('success' ,'Successfully deleted');
+        }else if(auth()->user()->role === 'patient'){
+            return redirect()->route('app-patient.index')->with('success' ,'Successfully deleted');
+        }
+       
     }
 
     public function changeStatus(Request $request){

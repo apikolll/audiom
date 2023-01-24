@@ -54,11 +54,20 @@ Route::group(['middleware' => ['auth', 'user:patient']], function () {
         Route::get('/patient-dashboard', 'index')->name('patient.page');
         Route::get('/change-patient-password', 'changePatientPassword')->name('change.patient.password');
         Route::post('/change-patient-pass', 'updatePatientPassword')->name('update.patient.password');
-        Route::get('/bookappointment', 'bookAppointment')->name('book.appointment');
+        // Route::get('/bookappointment', 'bookAppointment')->name('book.appointment');
     });
 
-    Route::resource('patients', PatientController::class);
     
+    Route::controller(AppController::class)->group(function(){
+        Route::get('app-patient', 'index')->name('app-patient.index');
+        Route::get('app-patient/create', 'create')->name('app-patient.create');
+        Route::post('app-patient/check', 'checkSessions')->name('app-patient.check');
+        Route::post('app-patient/store', 'storeAppointment')->name('app-patient.store');
+        Route::get('app-patient/show/{id}', 'show')->name('app-patient.show');
+        Route::post('app-patient/{id}/delete', 'delete')->name('app-patient.delete');
+    });
+    
+    Route::resource('patients', PatientController::class);
     Route::get('patient/detail', [PatientController::class, 'detail'])->name('patient.detail');
     Route::get('patient/appointment', [PatientController::class, 'appointment'])->name('patient.appointment');
     

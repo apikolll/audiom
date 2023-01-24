@@ -23,8 +23,22 @@
                             <img src="{{ asset('img/appointment.png') }}" alt="icon"
                                 class="icon-dashboard align-middle">
                             <div class="d-block">
-                                <h5>Total Appointment</h5>
+                                <h5>Total Staff</h5>
                                 <h5 class="rounded-2 text-dark fw-bold">{{ $staff }}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card rounded-3 shadow-sm mb-3 p-3" style="width: 20rem;">
+                <div class="card-body">
+                    <div class="card-text">
+                        <div class="d-flex justify-content-start gap-4 align-items-center">
+                            <img src="{{ asset('img/appointment.png') }}" alt="icon"
+                                class="icon-dashboard align-middle">
+                            <div class="d-block">
+                                <h5>Total Appointment</h5>
+                                <h5 class="rounded-2 text-dark fw-bold">{{ $appointment }}</h5>
                             </div>
                         </div>
                     </div>

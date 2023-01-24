@@ -35,7 +35,12 @@ class PatientController extends Controller
      */
     public function create()
     {
-        return view('staff.managepatient.addpatient');
+        if(auth()->user()->role === 'staff'){
+            return view('staff.managepatient.addpatient');
+        }else if(auth()->user()->role === 'patient'){
+            return view('patient.addAppointment');
+        }
+        
     }
 
     /**
@@ -71,7 +76,7 @@ class PatientController extends Controller
         $patient->name = $request->name;
         $patient->age = $request->age;
         $patient->dob = $request->dob;
-        // $patient->image = $request->file('image')->store('patient', 'public');
+        $patient->image = $request->file('image')->store('patient', 'public');
         $patient->gender = $request->gender;
         $patient->race = $request->race;
         $patient->user_id = $user->id;
@@ -198,7 +203,6 @@ class PatientController extends Controller
     }
 
     public function bookAppointment(){
-        // $times = Time::all();
         return view('patient.bookAppointment');
     }
 
