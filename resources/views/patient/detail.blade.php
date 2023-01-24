@@ -7,7 +7,7 @@
 
         <ul class="nav mb-3">
             <li>
-              <h2 class="text-light nav-item fs-5 {{ 'patient/detail' ==  request()->path() ? 'border-bottom' : '' }}">
+              <h2 class="text-light nav-item fs-5 {{ 'app-patient/show/'. $appointment->id ==  request()->path() ? 'border-bottom' : '' }}">
                 Follow-up Appointment Details</h2>
             </li>
           </ul>

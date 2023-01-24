@@ -65,6 +65,8 @@ Route::group(['middleware' => ['auth', 'user:patient']], function () {
         Route::post('app-patient/store', 'storeAppointment')->name('app-patient.store');
         Route::get('app-patient/show/{id}', 'show')->name('app-patient.show');
         Route::post('app-patient/{id}/delete', 'delete')->name('app-patient.delete');
+        Route::get('app-patient/reschedule/{id}', 'reschedule')->name('app-patient.reschedule');
+        Route::post('app-patient/updateReschedule/{id}', 'updateReschedule')->name('app-patient.updateReschedule');
     });
     
     Route::resource('patients', PatientController::class);

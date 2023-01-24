@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Patient;
-use App\Models\Time;
+use App\Models\Appointment;
 
 class PatientController extends Controller
 {
@@ -24,7 +24,10 @@ class PatientController extends Controller
         if (auth()->user()->role === "staff") {
             return view('staff.managepatient.patient', compact('patients'));
         } else if (auth()->user()->role === "patient") {
-            return view('patient.homepage', compact('patients'));
+            $id = auth()->user()->patient->id;
+            $upcomingAppointments = Appointment::where('patient_id', $id)->where('status', 'Approve')->get();
+            $followupAppointments = Appointment::where('patient_id', $id)->where('status', 'FollowUp')->get();
+            return view('patient.homepage', compact('upcomingAppointments', 'followupAppointments'));
         }
     }
 

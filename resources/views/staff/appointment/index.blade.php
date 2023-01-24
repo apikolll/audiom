@@ -56,11 +56,12 @@
                                 <span class="d-block fs-6">Dr. {{ $appointment->doctor->name }}</span>
                             </td>
                             <td><select class="form-select w-75 fs-6">
-                                    <option selected>{{ $appointment->status ? $appointment->status : 'Waiting for response' }}</option>
+                                    <option selected>{{ $appointment->status}}</option>
                                     <option value="Pending">Pending</option>
+                                    <option value="Approve">Approve</option>
                                     <option value="Cancelled">Cancelled</option>
                                     <option value="Done">Done</option>
-                                    <option value="followup">Follow-up</option>
+                                    <option value="FollowUp">Follow-up</option>
                                 </select></td>
                             <td>
                                 <form action="{{ route('app.delete', $appointment->id) }}" method="POST">

@@ -24,15 +24,21 @@ class AppController extends Controller
         else if(auth()->user()->role === 'patient'){
 
             $id = auth()->user()->patient->id;
-            $appointments = Appointment::where('patient_id', $id)->where('status', 'Pending')->get();
+            $appointments = Appointment::where('patient_id', $id)->get();
             return view('patient.bookAppointment', compact('appointments'));
         }
        
     }
 
     public function create(){
-        return view('staff.appointment.create_appointment');
+
+        if(auth()->user()->role === "staff"){
+            return view('staff.appointment.create_appointment');
+        } else if(auth()->user()->role === "patient"){
+            return view('patient.addAppointment');
+        }
     }
+        
 
     public function storeAppointment(Request $request){
 
@@ -133,6 +139,27 @@ class AppController extends Controller
         }
 
         return back();
+    }
+
+    public function reschedule($id){
+        $app = Appointment::find($id);
+        $doctor = $app->doctor->name;
+        $date = $app->schedule->date;
+        $sessions = Schedule::with(['sessions'])->where('date', $date)->get();
+
+        return view('patient.reschedule', compact('date', 'sessions', 'doctor', 'app'));
+    }
+
+    public function updateReschedule(Request $request, $id){
+
+        $appointment = Appointment::find($id);
+
+        $appointment->status = "Pending";
+        $appointment->cabin = $request->cabin;
+        $appointment->session_id = $request->session;
+        $appointment->save();
+
+        return redirect()->route('app-patient.index')->with('sucess', "Succesfully reschedule");
     }
 
 }

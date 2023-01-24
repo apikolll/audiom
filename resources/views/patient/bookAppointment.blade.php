@@ -8,23 +8,16 @@
 
         <ul class="nav mb-3">
             <li>
-                <h2 class="text-light nav-item fs-5 {{ 'app-patient' ==  request()->path() ? 'border-bottom' : '' }}">
+                <h2 class="text-light nav-item fs-5 {{'app-patient' ==  request()->path() ? 'border-bottom' : '' }}">
                     Appointments</h2>
             </li>
         </ul>
 
         <div class="card">
             <div class="card-body">
-<<<<<<< HEAD
-                <div class="card-title d-flex justify-content-between">
-                    <h3 class="fs-5">Current Appointment</h3>
-                    <a href="{{ route('patients.create') }}" class="text-decoration-none">
-                        <button class="btn btn-success">Add Appointment</button>
-                    </a>
-=======
+
                 <div class="d-flex justify-content-end align-items-center mb-3">
-                    <a href="{{ route('patients.create') }}" class="btn btn-success">Add Appointment</a>
->>>>>>> refs/remotes/origin/master
+                    <a href="{{ route('app-patient.create') }}" class="btn btn-success">Add Appointment</a>
                 </div>
 
                 <table class="table table-hover">
@@ -51,7 +44,7 @@
                                 <span class="d-block fs-6">Dr. {{ $appointment->doctor->name }}</span>
                             </td>
                             <td>
-                                <span class="badge bg-warning text-dark">{{ $appointment->status ? $appointment->status : 'No Status' }}</span>
+                                <span class="badge bg-primary text-light">{{ $appointment->status}}</span>
                             </td>
                             <td>
                                 <form action="{{ route('app-patient.delete', $appointment->id) }}" method="POST">
@@ -59,7 +52,12 @@
                                     @method('DELETE')
                                     <a href="{{ route('app-patient.show', $appointment->id) }}"
                                         class="btn btn-outline-primary">Details</a>
+                                    @if ($appointment->status == "Approve")
+                                    <button class="btn btn-danger" type="submit" disabled>Delete</button>
+                                    @else
+                                    <a href="{{ route('app-patient.reschedule', $appointment->id) }}" class="btn btn-warning">Reschedule</a>
                                     <button class="btn btn-danger" type="submit">Delete</button>
+                                    @endif
                                 </form>
                             </td>
                         </tr>
@@ -74,7 +72,4 @@
                 </table>
             </div>
         </div>
-    </div>
-</section>
-
 @endsection
