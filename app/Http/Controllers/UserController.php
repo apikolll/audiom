@@ -79,23 +79,23 @@ class UserController extends Controller
     }
 
     //patient homepage
-    public function patient()
-    {
-        return view('patient.homepage');
-    }
+    // public function patient()
+    // {
+    //     return view('patient.homepage');
+    // }
 
     //staff homepage
-    public function staff()
-    {
-        $staff = User::all()->count();
-        return view('staff.dashboard', compact('staff'));
-    }
+    // public function staff()
+    // {
+    //     $staff = User::all()->count();
+    //     return view('staff.dashboard', compact('staff'));
+    // }
 
     //doctor homepage
-    public function doctor()
-    {
-        return view('doctor.homepage');
-    }
+    // public function doctor()
+    // {
+    //     return view('doctor.homepage');
+    // }
 
     // function to log user out
     public function logout(Request $request)
@@ -111,12 +111,12 @@ class UserController extends Controller
     }
 
     //function to manage user profile
-    public function userProfile()
-    {
+    // public function userProfile()
+    // {
 
-        $users = DB::table('users')->get();
-        return view('patient.profile', ['users' => $users]);
-    }
+    //     $users = DB::table('users')->get();
+    //     return view('patient.profile', ['users' => $users]);
+    // }
 
 
     public function sendResetLink(Request $request)
@@ -127,8 +127,8 @@ class UserController extends Controller
         ]);
     }
 
-    public function bookAppointment()
-    {
-        return view('patient.bookAppointment');
-    }
+    // public function bookAppointment()
+    // {
+    //     return view('patient.bookAppointment');
+    // }
 }

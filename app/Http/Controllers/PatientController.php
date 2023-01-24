@@ -205,8 +205,4 @@ class PatientController extends Controller
     public function detail(){
         return view('patient.detail');
     }
-
-    public function appointment(){
-        
-    }
 }

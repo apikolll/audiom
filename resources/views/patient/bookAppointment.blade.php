@@ -24,7 +24,7 @@
                 <div class="card-title d-flex justify-content-between">
                     <h3 class="fs-5">Current Appointment</h3>
                     <a href="{{ route('patients.create') }}" class="text-decoration-none">
-                        <button class="btn btn-success" >Add Appointment</button>
+                        <button class="btn btn-success">Add Appointment</button>
                     </a>
                 </div>
                 <div class="card-text">

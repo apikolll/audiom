@@ -4,7 +4,7 @@
 
 
 
-<section class="pt-5">
+<section class="pt-5 fs-6">
     <div class="container">
         <ul class="nav mb-3">
             <li class="nav-item {{ 'app' ==  request()->path() ? 'border-bottom' : '' }}">
