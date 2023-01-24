@@ -22,13 +22,13 @@
                     <div class="col-6">
                         <div>
                             <h3 class="fs-6 text-muted">Appointment ID:</h3>
-                            <p class="badge bg-info text-dark">APP2</p>
+                            <p class="badge bg-info text-dark">{{ $appointment->id }}</p>
                         </div>
                     </div>
                     <div class="col-6">
                         <div>
                             <h3 class="fs-6 text-muted">Doctor:</h3>
-                            <p>Dr.Danial</p>
+                            <p>Dr. {{ $appointment->doctor->name }}</p>
                         </div>
                     </div>
                 </div>
@@ -37,8 +37,12 @@
                         <div>
                             <h3 class="fs-6 text-muted">Session:</h3>
                             <div class="d-block">
-                                <p>Session 1</p>
-                                <p>Time: 9:00 AM - 10:00 AM</p>
+                                <p>Session {{ $appointment->session_id }}</p>
+                                <p> Time:
+                                    {{\Carbon\Carbon::createFromFormat('H:i:s',$appointment->sessions->starttime)->format('g:i
+                                    A')}} -
+                                    {{\Carbon\Carbon::createFromFormat('H:i:s',$appointment->sessions->endtime)->format('g:i
+                                    A')}}</p></p>
                             </div>
                             
                         </div>
@@ -46,26 +50,39 @@
                     <div class="col-6">
                         <div>
                             <h3 class="fs-6 text-muted">Date:</h3>
-                            <p>Jan 23, 2021</p>
+                            <p>{{\Carbon\Carbon::createFromFormat('Y-m-d', $appointment->schedule->date)->format('M d, Y')}}</p>
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row mb-3">
                     <div class="col-6">
                         <div>
                             <h3 class="fs-6 text-muted">Cabin:</h3>
-                            <p>Cabin 1</p>
+                            <p>Cabin {{ $appointment->cabin }}</p>
                             
                         </div>
                     </div>
                     <div class="col-6">
                         <div>
                             <h3 class="fs-6 text-muted">Description:</h3>
-                            <p>Speech and Hearing Test</p>
+                            <p>{{ $appointment->description }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <div>
+                            <h3 class="fs-6 text-muted">Status:</h3>
+                            <p class="badge bg-warning text-dark">{{ $appointment->status ? $appointment->status : 'No Status' }}</p>                
                         </div>
                     </div>
                 </div>
             </div>
+            <h3 class="fs-6 text-muted text-end">
+                Created at {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $appointment->created_at)->format('M d,
+                Y g:i
+                A')}}
+            </h3>
           </div>
 
     </div>
