@@ -37,8 +37,8 @@
             <div class="alert alert-danger text-center">{{ Session::get('error') }}</div>
             @endif
             @if (Session::has('message'))
-            <div class="alert alert-success" role="alert">
-                {{ Session::get('message') }}
+            <div class="alert alert-success text-center" role="alert">
+                <span class="fs-6">{{ Session::get('message') }}</span>
             </div>
             @endif
             <div class="card">

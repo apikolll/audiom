@@ -56,7 +56,6 @@ Route::group(['middleware' => ['auth', 'user:patient']], function () {
         Route::get('/patient-dashboard', 'index')->name('patient.page');
         Route::get('/change-patient-password', 'changePatientPassword')->name('change.patient.password');
         Route::post('/change-patient-pass', 'updatePatientPassword')->name('update.patient.password');
-        // Route::get('/bookappointment', 'bookAppointment')->name('book.appointment');
     });
 
     

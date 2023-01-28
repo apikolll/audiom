@@ -36,23 +36,13 @@ class UserController extends Controller
         // $user->save();
 
         $patient = new Patient();
-        // $staff = new Staff();
 
         if ($user->role == 'patient') {
             $patient->user_id = $user->id;
             $patient->name = $request->name;
             $patient->save();
-            return redirect()->route('patient.page');
-
-        } elseif ($user->role == 'staff') {
-            // $staff->user_id = $user->id;
-            // $staff->name = $request->name;
-            // $staff->save();
-            return redirect()->route('staff.page');
-
-        } elseif ($user->role == 'doctor') {
-            return redirect()->route('doctors.index');
-        }
+            return redirect()->route('login')->with('message', 'Successfully registered');
+        } 
     }
 
     // function to login user
