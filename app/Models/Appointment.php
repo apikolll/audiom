@@ -8,6 +8,7 @@ use App\Models\Doctor;
 use App\Models\Patient;
 use App\Models\Session;
 use App\Models\Schedule;
+use App\Models\Report;
 
 class Appointment extends Model
 {
@@ -33,5 +34,8 @@ class Appointment extends Model
         return $this->belongsTo(Schedule::class, 'schedule_id');
     }
 
+    public function report(){
+        return $this->belongsTo(Report::class, 'report_id');
+    }
 
 }

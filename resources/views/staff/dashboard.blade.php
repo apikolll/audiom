@@ -20,7 +20,7 @@
                 <div class="card-body">
                     <div class="card-text">
                         <div class="d-flex justify-content-start gap-4 align-items-center">
-                            <img src="{{ asset('img/appointment.png') }}" alt="icon"
+                            <img src="{{ asset('img/staff.png') }}" alt="icon"
                                 class="icon-dashboard align-middle">
                             <div class="d-block">
                                 <h5>Total Staff</h5>
@@ -63,7 +63,7 @@
                         <div class="d-flex justify-content-start gap-4 align-items-center">
                             <img src="{{ asset('img/medical.png') }}" alt="icon" class="icon-dashboard align-middle">
                             <div class="d-block">
-                                <h5>Total Patients</h5>
+                                <h5>Total Patient</h5>
                                 <h5 class="rounded-2 text-dark fw-bold">{{ $patient }}</h5>
                             </div>
                         </div>

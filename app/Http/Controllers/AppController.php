@@ -85,17 +85,30 @@ class AppController extends Controller
         $request->validate([
             'date' => 'required'
         ]);
+        $curDate = Carbon::now();
+        // $curDate = Carbon::now()->format('M d, Y');
+
+        if($request->date <= $curDate){
+            return back()->with('error', 'Please select the date after '. Carbon::createFromFormat('Y-m-d H:i:s', $curDate)->format('M d, Y'));
+        }
+
+        // $appointment = Appointment::where('patient_id', 1)->first();
 
         $date = $request->date;
         $schedule = Schedule::where('date', $date)->first();
         $sessions = Schedule::with(['sessions'])->where('date', $date)->get();
         $patients = Patient::all();
         $doctors = Doctor::all();
-
+        
         if (!$schedule) {
             return back()->with('error', 'No Schedule available for ' . Carbon::createFromFormat('Y-m-d', $request->date)->format('M d,
                 Y'));
         }
+
+
+        // if(!$appointment->schedule_id == $schedule->id){
+        //     return back()->with('error', 'Cannot set more than one appointment in the same day.');
+        // }
 
         if(auth()->user()->role === 'staff'){
             return view('staff.appointment.check_appointment', compact('sessions', 'date', 'patients', 'doctors'));
@@ -112,6 +125,8 @@ class AppController extends Controller
             return view('staff.appointment.details_appointment', compact('appointment'));
         }else if(auth()->user()->role === 'patient'){
             return view('patient.detail', compact('appointment'));
+        }else{
+            return view('doctor.detail-patient', compact('appointment'));
         }
     }
        

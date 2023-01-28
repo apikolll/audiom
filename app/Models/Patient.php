@@ -28,4 +28,8 @@ class Patient extends Model
     public function appointment(){
         return $this->hasOne(Appointment::class);
     }
+
+    public function report(){
+        return $this->hasOne(Report::class);
+    }
 }

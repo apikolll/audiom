@@ -50,7 +50,7 @@
 
 
 {{-- Services --}}
-<h1 class="text-light text-center display-4 text-underline fw-bold afiq">Services</h1>
+<h1 class="text-light text-center display-4 text-underline fw-bold afiq" id="services">Services</h1>
 <section class="p-4">
     <div class="container">
         <div class="row gap-3">
@@ -130,7 +130,7 @@
 {{-- Cards vision mission --}}
 
 <div class="p-1 mt-5">
-    <h1 class="text-light text-center display-4 text-underline fw-bold">About us</h1>
+    <h1 class="text-light text-center display-4 text-underline fw-bold" id="about">About us</h1>
     <section class="p-4">
         <div class="container reveal">
             <div class="row mb-5">
@@ -179,7 +179,7 @@
 </div>
 
 <div class="p-1 mt-5 mb-5">
-    <h1 class="text-light text-center display-4 text-underline fw-bold">FAQ</h1>
+    <h1 class="text-light text-center display-4 text-underline fw-bold" id="faq">FAQ</h1>
     <div class="accordion w-75 mx-auto reveal" id="accordionExample">
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">

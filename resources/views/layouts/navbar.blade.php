@@ -51,16 +51,16 @@
             <div class="collapse navbar-collapse text-center" id="navmenu">
                 <ul class="navbar-nav ms-auto fs-6">
                     <li class="nav-item">
-                        <a href="/services" class="nav-link text-dark">Services</a>
+                        <a href="#services" class="nav-link text-dark">Services</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/about" class="nav-link text-dark">About</a>
+                        <a href="#about" class="nav-link text-dark">About</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/faq" class="nav-link text-dark">FAQ</a>
+                        <a href="#faq" class="nav-link text-dark">FAQ</a>
                     </li>
                     <li class="nav-item">
-                        <a href="/location" class="nav-link text-dark">Location</a>
+                        <a href="#location" class="nav-link text-dark">Location</a>
                     </li>
                     <li class="nav-item mx-2">
                         <a href="login" class="btn btn-outline-warning" type="button">Login</a>

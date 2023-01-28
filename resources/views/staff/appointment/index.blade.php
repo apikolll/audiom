@@ -42,10 +42,10 @@
                             <th scope="col" class="text-muted"></th>
                         </tr>
                     </thead>
-                   
+                    @if (count($appointments) > 0)
+
+                    @foreach ($appointments as $appointment)
                     <tbody class="align-middle">
-                        @foreach ($appointments as $appointment)
-                        @if (count($appointments) > 0)
                         <tr>
                             <th scope="row" class="fs-6"><span class="badge bg-info text-dark">{{ $appointment->id
                                     }}</span></th>
@@ -55,7 +55,7 @@
                             <td>
                                 <span class="d-block fs-6">Dr. {{ $appointment->doctor->name }}</span>
                             </td>
-                            <td><select class="form-select w-75 fs-6">
+                            <td><select class="form-select w-75 fs-6" data-id={{ $appointment->id }}>
                                     <option selected>{{ $appointment->status}}</option>
                                     <option value="Pending">Pending</option>
                                     <option value="Approve">Approve</option>
@@ -74,6 +74,7 @@
                             </td>
                         </tr>
                     </tbody>
+                    @endforeach
                     @else
                     <tr>
                         <td colspan="5" class="text-center fs-6">No Data Found</td>
@@ -92,13 +93,7 @@
     $(document).ready(function(){
         $('select').on('change',function(){
             var status =  $( "select option:selected" ).val();
-            var app_id = '{{$appointment->id}}';
-
-            // $.ajaxSetup({
-            //         headers: {
-            //              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            //         }
-            //             });
+            var app_id = $(this).data('id');
 
             $.ajax({
                 url: '/change-status', 
@@ -112,9 +107,9 @@
                     alert("success");
                 }
             });
-            location.reload(true);
+            location.reload();
         })
     })
 </script>
-@endforeach
+{{-- @endforeach --}}
 @endsection

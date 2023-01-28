@@ -81,13 +81,13 @@
                     <span class="align-middle mx-2">Dashboard</span>
                 </div>
             </a>
-            <a href="{{ route('book.appointment') }}" class="text-decoration-none text-dark">
+            <a href="{{ route('report.index') }}" class="text-decoration-none text-dark">
                 <div class="mt-3 shadow-sm p-3 rounded-4 mb-2 h6 border border-top" id="sb">
                     <img src="{{ asset('img/doctor.png') }}" alt="icon" class="icon align-middle">
                     <span class="align-middle mx-2">Reports</span>
                 </div>
             </a>
-            <a href="{{ route('book.appointment') }}" class="text-decoration-none text-dark">
+            <a href="{{ URL('https://audsim.com/audgenJS/audgenjs.html') }}" class="text-decoration-none text-dark">
                 <div class="mt-3 shadow-sm p-3 rounded-4 mb-2 h6 border border-top" id="sb">
                     <img src="{{ asset('img/test.png') }}" alt="icon" class="icon align-middle">
                     <span class="align-middle mx-2">Tests</span>

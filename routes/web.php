@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\PatientController;
+use App\Http\Controllers\QuestionnaireController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\ScheduleController;
@@ -111,7 +113,16 @@ Route::group(['middleware' => ['auth', 'user:staff']], function () {
 Route::group(['middleware' => ['auth', 'user:doctor']], function () {
     
     Route::resource('doctors', DoctorController::class);
-    // Route::get('/doctor-page', [UserController::class, ('doctor')])->name('doctor.page');
+    Route::get('doctors/show/{id}', [AppController::class, 'show'])->name('doc.app');
+    Route::get('doctors/todayappointment/index', [DoctorController::class, 'todayApp'])->name('todayappointment.index');
+
+    Route::controller(ReportController::class)->group(function(){
+        Route::get('report', 'index')->name('report.index');
+        Route::get('create/{id}', 'create')->name('report.create');
+        Route::post('store', 'store')->name('report.store');
+        Route::get('report/detail/{id}', 'detailReport')->name('report.detail');
+    });
+
 });
 
 
@@ -129,29 +140,11 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
 });
 
 
-// Route::get('forgetpass', [ForgotPasswordController::class, ('showForgetPasswordForm')])->name('forget.password.post');
+// FOR TESTING PURPOSES ONLY
 
-
-// Route::get('/patient', function(){
-//     return view('patient');
-// })->name('patient.page');
-
-// Route::get('/app', function(){
-//     return view('staff.appointments.index');
-// });
-
-// Route::get('/addapp', function(){
-//     return view('staff.appointments.addappointments');
-// });
-
-
-// Route::get('/settime', function(){
-//     return view('staff.appointments.appointment_time');
-// });
-
-
-// Route::get('/testid', function(){
-//     $id = IdGenerator::generate(['table' => 'questionnaires', 'length' => 6, 'prefix' => 'Q']);
-
-//     return $id;
+// Route::controller(QuestionnaireController::class)->group(function(){
+//     Route::get('firstpage', 'firstPage')->name('firstpage');
+//     Route::get('question/adultForm', 'adultForm')->name('question.adultform');
+//     Route::get('question/childForm', 'childForm')->name('question.chidlform');
+//     Route::store('question/store', 'store')->name('question.store');
 // });

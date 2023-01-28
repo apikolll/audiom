@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 use App\Models\Doctor;
 use App\Models\User;
+use App\Models\Schedule;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Carbon;
 
 class DoctorController extends Controller
 {
@@ -18,12 +21,30 @@ class DoctorController extends Controller
     public function index()
     {
         $doctor = Doctor::all();
-        if(auth()->user()->role === "staff"){
+
+        if (auth()->user()->role === "staff") {
             return view('staff.managedoctor.doctor', compact('doctor'));
-        }else if(auth()->user()->role === "doctor"){
-            return view('doctor.dashboard');
+        } else if (auth()->user()->role === "doctor") {
+            $doctor = auth()->user()->doctor->id;
+            $patients = Appointment::with('patient', 'schedule')->where('doctor_id', $doctor)->where('status', 'Approve')->get();
+            $date = Carbon::now()->format('Y-m-d');
+            $schedule = Schedule::where('date', $date)->first();
+            if(!$schedule){
+                $todayAppointments = 0;
+            }else{
+                $todayAppointments = Appointment::where('schedule_id', $schedule->id)->where('doctor_id', $doctor)->count();
+            }
+            
+            // $tests = Appointment::with('schedule')->where('status', 'Approve')->where('doctor_id', $doctor)->get();
+
+            // if ($tests > 0) {
+            //     $todayAppointments = $tests;
+            // } else {
+            //     $todayAppointments = 0;
+            // }
+
+            return view('doctor.dashboard', compact('patients', 'todayAppointments'));
         }
-       
     }
 
     /**
@@ -65,6 +86,7 @@ class DoctorController extends Controller
         Doctor::create([
             'name' => $request->name,
             'user_id' => $user->id,
+            'image' => $request->file('image')->store('doctor', 'public'),
             'contact' => $request->contact,
             'race' => $request->race,
             'gender' => $request->gender,
@@ -116,7 +138,7 @@ class DoctorController extends Controller
             'address' => 'required'
         ]);
 
-        
+
         // $user = new User();
 
         // $user->name = $request->name;
@@ -129,7 +151,7 @@ class DoctorController extends Controller
         $doctor->contact = $request->contact;
         $doctor->race = $request->race;
         if ($request->hasFile('image')) {
-            Storage::delete($doctor->image);
+            // Storage::delete($doctor->image);
             $doctor->image = $request->file('image')->store('doctor', 'public');
         }
         $doctor->gender = $request->gender;
@@ -154,5 +176,19 @@ class DoctorController extends Controller
         $doctor->delete();
 
         return back()->with('success', 'Successfully deleted');
+    }
+
+    public function todayApp()
+    {
+        $doctor = auth()->user()->doctor->id;
+        $date = Carbon::now()->format('Y-m-d');
+        $schedule = Schedule::where('date', $date)->first();
+        if(!$schedule){
+            return back();
+        }
+        
+        $apps = Appointment::where('schedule_id', $schedule->id)->where('doctor_id', $doctor)->get();
+
+        return view('doctor.todayappointment.index', compact('apps'));
     }
 }
