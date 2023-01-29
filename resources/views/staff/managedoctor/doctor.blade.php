@@ -10,7 +10,7 @@
          </ul>
 
         @if(Session::has('success'))
-        <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+        <div class="alert alert-success alert-dismissible fade show text-center fs-6" role="alert">
             {{ Session::get('success') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
