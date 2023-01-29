@@ -22,21 +22,26 @@
         <div class="row mb-3">
             <div class="col-md-12 text-center">
                 <div class="form-group">
+                    @if (auth()->user()->patient->image)
                     <img src="{{ Storage::url($patient->image) }}" alt="dp" class="rounded-circle"
-                        style="width: 100px;height:100px">
+                    style="width: 100px;height:100px">
+                    @else
+                    <i class="bi bi-person-circle display-6"></i>
+                    @endif
+                    
                 </div>
             </div>
         </div>
         <div class="row mb-3">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>Name</label>
+                    <label class="form-label">Name</label>
                     <input class="form-control" type="text" name="name" value="{{ $patient->name }}" required>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>Age</label>
+                    <label class="form-label">Age</label>
                     <input class="form-control" type="text" name="age" value="{{ $patient->age }}" required>
                 </div>
             </div>
@@ -44,13 +49,13 @@
         <div class="row mb-3">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>Date of Birth</label>
+                    <label class="form-label">Date of Birth</label>
                     <input class="form-control" type="date" name="dob" value="{{ $patient->dob }}" required>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>Gender</label>
+                    <label class="form-label">Gender</label>
                     <input class="form-control" type="text" name="gender" value="{{ $patient->gender }}" required>
                 </div>
             </div>
@@ -58,13 +63,13 @@
         <div class="row mb-3">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>Race</label>
+                    <label class="form-label">Race</label>
                     <input class="form-control" type="text" name="race" value="{{ $patient->race }}" required>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label>Contact No</label>
+                    <label class="form-label">Contact No</label>
                     <input class="form-control" type="text" name="contact" value="{{ $patient->contact }}" required>
                 </div>
             </div>
@@ -72,8 +77,8 @@
         <div class="row mb-3">
             <div class="col-md-12">
                 <div class="form-group">
-                    <label>Upload image</label>
-                    <input class="form-control shadow" type="file" name="image">
+                    <label class="form-label">Upload image</label>
+                    <input class="form-control" type="file" name="image" id="image">
                 </div>
             </div>
         </div>
