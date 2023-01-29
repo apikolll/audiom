@@ -9,9 +9,14 @@ use App\Models\Patient;
 use App\Models\Doctor;
 use App\Models\Session;
 use App\Models\User;
+use App\Mail\Notify;
 use Illuminate\Support\Carbon;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
+
+
 
 class AppController extends Controller
 {
@@ -144,7 +149,6 @@ class AppController extends Controller
     }
 
     public function changeStatus(Request $request){
-
         $appointment = Appointment::find($request->app_id);
         $appointment->status = $request->status;
         $appointment->save();
@@ -153,7 +157,34 @@ class AppController extends Controller
             $appointment->delete();
         }
 
+        $patient = Patient::where('id', $appointment->patient_id)->first();
+        $doctor = Doctor::where('id', $appointment->doctor_id)->first();
+        $schedule = Schedule::where('id', $appointment->schedule_id)->first();
+        $session = Session::where('id', $appointment->session_id)->first();
+        $user = User::where('id', $patient->user_id)->first();
+
+        $date = Carbon::createFromFormat('Y-m-d', $schedule->date)->format('M d, Y');
+        $starttime = Carbon::createFromFormat('H:i:s',$session->starttime)->format('g:i A');
+        $endtime = Carbon::createFromFormat('H:i:s',$session->endtime)->format('g:i A');
+
+        $data = [
+            'id' => $appointment->id,
+            'patient_name' => $patient->name,
+            'doctor_name' => $doctor->name,
+            'date' => $date,
+            'session' => $session->id,
+            'starttime' => $starttime,
+            'endtime' => $endtime,
+            'cabin' => $appointment->cabin,
+        ];
+
+        if($appointment->status == 'Approve'){
+            Mail::to($user->email)->send(new Notify($data));
+        }
+       
         return back();
+
+        // return redirect('/send');
     }
 
     public function reschedule($id){

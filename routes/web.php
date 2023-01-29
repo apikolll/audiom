@@ -13,6 +13,8 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\ScheduleController;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Notify;
 
 
 /*
@@ -27,6 +29,15 @@ use Haruncpi\LaravelIdGenerator\IdGenerator;
 */
 
 Route::group(['middleware' => 'prevent-back-history'],function(){
+
+    Route::get('/huha', function(){
+        return view('app.confirmation');
+    });
+
+    Route::get('/send', function(){
+        Mail::to('customr@gmail.com')->send(new Notify());
+        
+    });
 
 Route::get('/', function () {
     return view('homepage');
@@ -47,7 +58,6 @@ Route::get('logout-user', [UserController::class, ('logout')])->name('logout.use
 Route::post('resetpassword', [UserController::class, ('sendResetLink')])->name('forgot-password');
 
 // Route::get('patient-page', [UserController::class, ('patient')])->middleware(['useraccess:patient']);
-
 
 
 Route::group(['middleware' => ['auth', 'user:patient']], function () {
