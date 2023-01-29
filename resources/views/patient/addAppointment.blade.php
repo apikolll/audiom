@@ -44,7 +44,7 @@
             <div class="col-6">
                 <label for="name" class="form-label">Doctor's Name:</label>
                 <select class="form-select" aria-label="Default select example" name="doctor" id="name" required>
-                    <option selected>Doctor</option>
+                    <option value="0" selected>Doctor</option>
                     @foreach ($doctors as $doctor)
                     <option value="{{ $doctor->id }}">{{ $doctor->name }}</option>
                     @endforeach 
@@ -84,6 +84,9 @@
         @endforeach
         <div class="mb-3">
             <p>Choose Cabin:</p>
+            @error('cabin')
+                {{ $message }}
+            @enderror
             <div class="card rounded-3 p-4">
                 <div class="card-body">
                     <div class="row">

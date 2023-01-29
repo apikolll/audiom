@@ -47,7 +47,6 @@ class AppController extends Controller
 
     public function storeAppointment(Request $request)
     {
-
         $request->validate([
             'patient' => 'required',
             'doctor' => 'required',
@@ -55,6 +54,10 @@ class AppController extends Controller
             'cabin' => 'required',
             'description' => 'required'
         ]);
+
+        if($request->doctor == '0'){
+            return redirect()->route('app-patient.create')->with('error', 'Please choose doctor');
+        }
 
         $sessionid = Appointment::pluck('session_id')->first();
         $cabinid = Appointment::pluck('cabin')->first();
@@ -70,10 +73,6 @@ class AppController extends Controller
                 return redirect()->route('app-patient.create')->with('error', 'Please choose another cabin or session');
             }     
         }
-
-        // if (!$cabinid == $request->cabin && !$sessionid == $request->session && !$scheduleid == $schedules->id) {
-        //     return redirect()->route('app.create')->with('error', 'Please choose another cabin or session');
-        // }
 
         $id = IdGenerator::generate(['table' => 'appointments', 'length' => 6, 'prefix' => 'APP']);
 
