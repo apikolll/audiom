@@ -90,10 +90,13 @@
             <div class="card rounded-3 p-4">
                 <div class="card-body">
                     <div class="row">
+                        @error('cabin')
+                            {{ $message }}
+                        @enderror
                         <div class="col-4">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="cabin" value=1
-                                    id="flexRadioDefault1">
+                                    id="flexRadioDefault1" required>
                                 <label class="form-check-label" for="flexRadioDefault1">
                                     Cabin 1
                                 </label>
@@ -102,7 +105,7 @@
                         <div class="col-4">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="cabin" value=2
-                                    id="flexRadioDefault1">
+                                    id="flexRadioDefault1" required>
                                 <label class="form-check-label" for="flexRadioDefault1">
                                     Cabin 2
                                 </label>
@@ -111,7 +114,7 @@
                         <div class="col-4">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="cabin" value=3
-                                    id="flexRadioDefault1">
+                                    id="flexRadioDefault1" required>
                                 <label class="form-check-label" for="flexRadioDefault1">
                                     Cabin 3
                                 </label>
