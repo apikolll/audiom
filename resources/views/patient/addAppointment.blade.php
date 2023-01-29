@@ -43,7 +43,7 @@
         <div class="row mb-3 mt-3">
             <div class="col-6">
                 <label for="name" class="form-label">Doctor's Name:</label>
-                <select class="form-select" aria-label="Default select example" name="doctor" id="name">
+                <select class="form-select" aria-label="Default select example" name="doctor" id="name" required>
                     <option selected>Doctor</option>
                     @foreach ($doctors as $doctor)
                     <option value="{{ $doctor->id }}">{{ $doctor->name }}</option>

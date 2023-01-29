@@ -49,7 +49,6 @@
                             <td>
                                 <form action="{{ route('app-patient.delete', $appointment->id) }}" method="POST">
                                     @csrf
-                                    @method('DELETE')
                                     <a href="{{ route('app-patient.show', $appointment->id) }}"
                                         class="btn btn-outline-primary">Details</a>
                                     @if ($appointment->status == "Approve")
