@@ -188,9 +188,9 @@ class AppController extends Controller
             'cabin' => $appointment->cabin,
         ];
 
-        if ($appointment->status == 'Approve') {
-            Mail::to($user->email)->send(new Notify($data));
-        }
+        // if ($appointment->status == 'Approve') {
+        //     Mail::to($user->email)->send(new Notify($data));
+        // }
 
         return back();
 
@@ -209,6 +209,20 @@ class AppController extends Controller
 
     public function updateReschedule(Request $request, $id)
     {
+        $sessionid = Appointment::pluck('session_id')->first();
+        $cabinid = Appointment::pluck('cabin')->first();
+        $schedule = Schedule::where('date', $request->date)->first();
+        $sessionid = Appointment::where('session_id', $request->session)->first();
+        $cabinid = Appointment::where('cabin', $request->cabin)->first();
+        $scheduleid = Appointment::where('schedule_id', $schedule->id)->first();
+
+        if ($cabinid && $sessionid && $scheduleid) {
+            if(auth()->user()->role == 'staff'){
+                return redirect()->route('app.create')->with('error', 'Please choose another cabin or session');
+            }elseif(auth()->user()->role == 'patient'){
+                return redirect()->route('app-patient.create')->with('error', 'Please choose another cabin or session');
+            }     
+        }
 
         $appointment = Appointment::find($id);
 
