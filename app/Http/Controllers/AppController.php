@@ -220,7 +220,7 @@ class AppController extends Controller
             if(auth()->user()->role == 'staff'){
                 return redirect()->route('app.create')->with('error', 'Please choose another cabin or session');
             }elseif(auth()->user()->role == 'patient'){
-                return redirect()->route('app-patient.reschedule')->with('error', 'Please choose another cabin or session');
+                return redirect()->route('app-patient.reschedule', $id)->with('error', 'Please choose another cabin or session');
             }     
         }
 
