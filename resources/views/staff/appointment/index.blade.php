@@ -66,7 +66,6 @@
                             <td>
                                 <form action="{{ route('app.delete', $appointment->id) }}" method="POST">
                                     @csrf
-                                    @method('DELETE')
                                     <a href="{{ route('app.show', $appointment->id) }}"
                                         class="btn btn-outline-primary">Details</a>
                                     <button class="btn btn-danger" type="submit">Delete</button>

@@ -100,7 +100,7 @@ Route::group(['middleware' => ['auth', 'user:staff']], function () {
         Route::post('app/check', 'checkSessions')->name('app.check');
         Route::post('app/store', 'storeAppointment')->name('app.store');
         Route::get('app/show/{id}', 'show')->name('app.show');
-        Route::post('app/{id}/delete', 'delete')->name('app.delete');
+        Route::post('app/delete/{id}', 'delete')->name('app.delete');
         Route::get('/change-status', 'changeStatus')->name('app.change-status');
     });
 
@@ -118,6 +118,7 @@ Route::group(['middleware' => ['auth', 'user:staff']], function () {
     // Route::post('/appointment/check', [AppointmentController::class, 'checkSessions'])->name('appointment.check');
     // Route::post('/appointment/store-appointment', [AppointmentController::class, 'storeAppointment'])->name('appointment.store-appointment');
 });
+
 
 Route::group(['middleware' => ['auth', 'user:doctor']], function () {
     

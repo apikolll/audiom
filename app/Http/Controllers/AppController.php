@@ -137,7 +137,7 @@ class AppController extends Controller
        
 
     public function delete($id){
-        $appointment = Appointment::find($id);
+        $appointment = Appointment::where('id', $id)->first();
         $appointment->delete();
 
         if(auth()->user()->role === 'staff'){
