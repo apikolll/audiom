@@ -123,10 +123,10 @@
     </div>
 </section>
 
-<div class="position-fixed">
+{{-- <div class="position-fixed">
     <iframe src='https://my.spline.design/untitled-6040165c4c62150b2d69e6315017cd7e/' frameborder='0' width='100%'
         height='100%'></iframe>
-</div>
+</div> --}}
 {{-- Cards vision mission --}}
 
 <div class="p-1 mt-5">
