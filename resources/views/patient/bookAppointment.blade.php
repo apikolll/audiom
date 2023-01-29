@@ -13,6 +13,12 @@
             </li>
         </ul>
 
+        @if (Session::has('error'))
+        <div class="alert alert-danger alert-dismissible fade show text-center fs-6" role="alert">
+            {{ Session::get('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
         <div class="card">
             <div class="card-body">
 
@@ -54,7 +60,8 @@
                                     @if ($appointment->status == "Approve")
                                     <button class="btn btn-danger" type="submit" disabled>Delete</button>
                                     @else
-                                    <a href="{{ route('app-patient.reschedule', $appointment->id) }}" class="btn btn-warning">Reschedule</a>
+                                    <a href="{{ route('app-patient.reschedule', $appointment->id) }}"
+                                        class="btn btn-warning">Reschedule</a>
                                     <button class="btn btn-danger" type="submit">Delete</button>
                                     @endif
                                 </form>
@@ -71,4 +78,4 @@
                 </table>
             </div>
         </div>
-@endsection
+        @endsection
