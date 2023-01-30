@@ -24,7 +24,7 @@ class AppController extends Controller
     public function index()
     {
         $appointments = Appointment::paginate(4);
-        
+
         if (auth()->user()->role === 'staff') {
             return view('staff.appointment.index', compact('appointments'));
         } else if (auth()->user()->role === 'patient') {
@@ -167,7 +167,7 @@ class AppController extends Controller
 
     public function changeStatus(Request $request)
     {
-        $appointment = Appointment::find($request->app_id);
+        $appointment = Appointment::where('id', $request->app_id)->first();
         $appointment->status = $request->status;
         $appointment->save();
 
@@ -196,13 +196,12 @@ class AppController extends Controller
             'cabin' => $appointment->cabin,
         ];
 
-        // if ($appointment->status == 'Approve') {
-        //     Mail::to($user->email)->send(new Notify($data));
-        // }
+        if ($appointment->status === 'Approve') {
+            Mail::to($user->email)->send(new Notify($data));
+        }else{
+            return back();
+        }
 
-        return back();
-
-        // return redirect('/send');
     }
 
     public function reschedule($id)

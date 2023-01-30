@@ -100,7 +100,8 @@
 <script>
     $(document).ready(function(){
         $('select').on('change',function(){
-            var status =  $( "select option:selected" ).val();
+            var status = this.value;
+            // var status =  $( "select option:selected" ).val();
             var app_id = $(this).data('id');
 
             $.ajax({

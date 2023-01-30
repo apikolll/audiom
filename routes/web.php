@@ -47,8 +47,6 @@ Route::post('login-user', [UserController::class, ('customLogin')])->name('login
 Route::get('logout-user', [UserController::class, ('logout')])->name('logout.user');
 Route::post('resetpassword', [UserController::class, ('sendResetLink')])->name('forgot-password');
 
-// Route::get('patient-page', [UserController::class, ('patient')])->middleware(['useraccess:patient']);
-
 
 Route::group(['middleware' => ['auth', 'user:patient']], function () {
 
@@ -101,11 +99,6 @@ Route::group(['middleware' => ['auth', 'user:staff']], function () {
     Route::resource('patient', PatientController::class);
     Route::resource('session', SessionController::class);
     Route::resource('schedule', ScheduleController::class);
-    // Route::resource('appointment', AppointmentController::class);
-
-    // Route::post('/masuk', [MasukController::class, 'robinbabi'])->name('robin.masuk');
-    // Route::post('/appointment/check', [AppointmentController::class, 'checkSessions'])->name('appointment.check');
-    // Route::post('/appointment/store-appointment', [AppointmentController::class, 'storeAppointment'])->name('appointment.store-appointment');
 });
 
 

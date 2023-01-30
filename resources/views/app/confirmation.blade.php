@@ -38,8 +38,8 @@
 </style>
 
 <div id="top">
-    <img src="{{ asset('img/logo.png') }}" alt="logo" style="width: 100px;">
-    <h1>IIUM</h1><span>Hearing & Speech Clinic</span>
+    {{-- <img src="https://www.google.com/imgres?imgurl=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fen%2Fthumb%2F8%2F8f%2FInternational_Islamic_University_Malaysia_logo.svg%2F1200px-International_Islamic_University_Malaysia_logo.svg.png&imgrefurl=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FInternational_Islamic_University_Malaysia&tbnid=fhaMVtX3uLCeBM&vet=12ahUKEwjHjdWTnO_8AhU7-XMBHWOaChEQMygCegUIARDYAQ..i&docid=BNMcW0l5BrRWRM&w=1200&h=1200&q=iium%20logo&client=opera&ved=2ahUKEwjHjdWTnO_8AhU7-XMBHWOaChEQMygCegUIARDYAQ" alt="logo" style="width: 100px;"> --}}
+    <h1>IIUM Hearing & Speech Clinic</h1>
 </div>
 
 <div id="content">
@@ -51,7 +51,7 @@
         <p>Doctor : Dr. {{ $datareceived['doctor_name'] }}</p>
         <p>Date: {{ $datareceived['date'] }}</p>
         <p>Session : {{ $datareceived['session'] }}</p>
-        <p>Time : {{ $datareceived['starttime'] }} -  {{ $datareceived['starttime'] }}</p>
+        <p>Time : {{ $datareceived['starttime'] }} -  {{ $datareceived['endtime'] }}</p>
         <p>Cabin : {{ $datareceived['cabin'] }}</p>
     </div>
 </div>
