@@ -19,7 +19,7 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $patients = Patient::with('users')->get();
+        $patients = Patient::with('users')->paginate(4);
 
         if (auth()->user()->role === "staff") {
             return view('staff.managepatient.patient', compact('patients'));

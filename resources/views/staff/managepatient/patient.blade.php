@@ -82,7 +82,8 @@
                                 @include('staff.managepatient.deletepatient')
                             </tr>
                         </tbody>
-                        {!! $patient->links() !!}
+                        {{-- {!! $patients->withQueryString()->links('pagination::bootstrap-5') !!} --}}
+                        {{-- {!! $patients->links() !!} --}}
                         @endforeach
                         @else
                         <tr>
@@ -92,6 +93,9 @@
                     </table>
                 </div>
             </div>
+        </div>
+        <div class="text-dark mt-3 fs-6">
+            {!! $patients->withQueryString()->links('pagination::bootstrap-5') !!}
         </div>
     </div>
 

@@ -20,7 +20,7 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctor = Doctor::all()->paginate(5);
+        $doctor = Doctor::paginate(4);
 
         if (auth()->user()->role === "staff") {
             return view('staff.managedoctor.doctor', compact('doctor'));
