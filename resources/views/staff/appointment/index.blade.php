@@ -15,7 +15,6 @@
 </style>
 
 
-
 <section class="pt-5 fs-6">
     <div class="container">
         <ul class="nav mb-3">
@@ -88,6 +87,9 @@
                 </table>
 
             </div>
+        </div>
+        <div class="text-dark mt-3 fs-6">
+            {!! $appointments->withQueryString()->links('pagination::bootstrap-5') !!}
         </div>
     </div>
 </section>

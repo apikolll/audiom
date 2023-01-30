@@ -23,7 +23,8 @@ class AppController extends Controller
 
     public function index()
     {
-        $appointments = Appointment::all();
+        $appointments = Appointment::paginate(4);
+        
         if (auth()->user()->role === 'staff') {
             return view('staff.appointment.index', compact('appointments'));
         } else if (auth()->user()->role === 'patient') {
