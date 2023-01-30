@@ -15,13 +15,13 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="mb-2">Name:</label>
-                    <input class="form-control bg-light" type="text" name="name" placeholder="Name" required>
+                    <input class="form-control bg-light" type="text" name="name" placeholder="Name" value="{{ $doctor->name }}">
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="mb-2">Contact No:</label>
-                    <input class="form-control bg-light" type="text" name="contact" placeholder="Contact No" required>
+                    <input class="form-control bg-light" type="text" name="contact" placeholder="Contact No" value="{{ $doctor->contact }}">
                 </div>
             </div>
         </div>
@@ -30,7 +30,7 @@
                 <div class="form-group">
                     <label class="mb-2">Race:</label>
                     <select class="form-select bg-transparent" aria-label="Default select example" name="race">
-                        <option selected>Choose Race</option>
+                        <option selected>{{ $doctor->race }}</option>
                         <option value="India">India</option>
                         <option value="Malay">Malay</option>
                         <option value="Chinese">Chinese</option>
@@ -40,16 +40,16 @@
             </div>
             <div class="col-md-6">
                 <div class="form-group">
-                    <label class="mb-2">Select Gender:</label>
+                    <label class="mb-2">Select Gender:</label> 
                     <div class="d-flex gap-2">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" value="Male" name="gender" id="flexRadioDefault1">
+                            <input class="form-check-input" type="radio" value="Male" name="gender" id="flexRadioDefault1" {{ $doctor->gender == 'Male' ? 'checked' : ''}}>
                             <label class="form-check-label" for="male">
                                 Male
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" value="Female" name="gender" id="flexRadioDefault2">
+                            <input class="form-check-input" type="radio" value="Female" name="gender" id="flexRadioDefault2" {{ $doctor->gender == 'Female' ? 'checked' : ''}}>
                             <label class="form-check-label" for="flexRadioDefault2">
                                 Female
                             </label>
@@ -62,13 +62,13 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="mb-2">Email:</label>
-                    <input class="form-control bg-light" type="text" name="email" placeholder="Email" required>
+                    <input class="form-control bg-light" type="text" name="email" placeholder="Email" value="{{ auth()->user()->email }}" readonly>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="mb-2">Password:</label>
-                    <input class="form-control bg-light" type="password" name="password" placeholder="Password" required>
+                    <input class="form-control bg-light" type="password" name="password" placeholder="Password" value="*******" readonly>
                 </div>
             </div>
         </div>
@@ -84,7 +84,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label class="mb-2">Address:</label>
-                    <input class="form-control bg-light" type="text" name="address" placeholder="Address" required>
+                    <input class="form-control bg-light" type="text" name="address" placeholder="Address" value="{{ $doctor->address }}">
                 </div>
             </div>
         </div>

@@ -12,7 +12,7 @@ class ReportController extends Controller
 {
     public function index(){
         $doctor = Doctor::where('user_id', auth()->user()->id)->pluck('id')->first();
-        $appointments = Appointment::with('patient')->with('doctor')->where('doctor_id', $doctor)->where('status', 'Approve')->get();
+        $appointments = Appointment::orderBy('created_at', 'ASC')->with('patient')->with('doctor')->where('doctor_id', $doctor)->where('status', 'Approve')->paginate(5);
         return view('doctor.report.index', compact('appointments'));
     }
 

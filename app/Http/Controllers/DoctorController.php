@@ -20,7 +20,8 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $doctor = Doctor::paginate(4);
+        // $doctor = Doctor::paginate(4);
+        $doctor = Doctor::orderBy('created_at', 'ASC')->paginate(4);
 
         if (auth()->user()->role === "staff") {
             return view('staff.managedoctor.doctor', compact('doctor'));
@@ -127,19 +128,19 @@ class DoctorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->validate([
-            'name' => 'required',
-            'contact' => 'required',
-            'race' => 'required',
-            'age' => 'required',
-            'dob' => 'required',
-            'gender' => 'required',
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-            'address' => 'required'
-        ]);
+        // $data = $request->validate([
+        //     'name' => 'required',
+        //     'contact' => 'required',
+        //     'race' => 'required',
+        //     'age' => 'required',
+        //     'dob' => 'required',
+        //     'gender' => 'required',
+        //     'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        //     'address' => 'required'
+        // ]);
 
     
-        dd($data);
+        // dd($data);
         $doctor = Doctor::find($id);
         $doctor->name = $request->name;
         $doctor->contact = $request->contact;

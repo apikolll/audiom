@@ -23,12 +23,11 @@ class AppController extends Controller
 
     public function index()
     {
-        $appointments = Appointment::paginate(4);
+        $appointments = Appointment::orderBy('status', 'ASC')->paginate(4);
 
         if (auth()->user()->role === 'staff') {
             return view('staff.appointment.index', compact('appointments'));
         } else if (auth()->user()->role === 'patient') {
-
             $id = auth()->user()->patient->id;
             $appointments = Appointment::where('patient_id', $id)->get();
             return view('patient.bookAppointment', compact('appointments'));

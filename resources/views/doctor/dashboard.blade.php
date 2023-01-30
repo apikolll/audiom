@@ -6,6 +6,12 @@
     <span class="text-light badge bg-primary" id="ct6"></span>
 </div>
 
+@if(Session::has('success'))
+<div class="alert alert-success alert-dismissible fade show text-center fs-6" role="alert">
+    {{ Session::get('success') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
 
 <section class="pt-5">
     <div class="container">
