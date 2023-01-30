@@ -29,7 +29,14 @@
                     <div class="col-6">
                         <div>
                             <h3 class="fs-6 text-muted">Status:</h3>
-                            <p class="badge bg-info text-dark">{{ $appointment->status }}</p>
+                            @if ($appointment->status == "Pending")
+                            <p class="badge bg-warning text-dark">{{ $appointment->status }}</p>
+                            @elseif($appointment->status == "Approve")
+                            <p class="badge bg-success text-dark">{{ $appointment->status }}</p>
+                            @else
+                            <p class="badge bg-primary text-dark">{{ $appointment->status }}</p>
+                            @endif
+                            
                         </div>
                     </div>
                 </div>
@@ -66,7 +73,7 @@
                     <div class="col-6">
                         <div>
                             <h3 class="fs-6 text-muted">Date:</h3>
-                            <p>{{ $appointment->schedule->date }}</p>
+                            <p>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $appointment->schedule->date)->format('M d, Y')  }}</p>
                         </div>
                     </div>
                 </div>

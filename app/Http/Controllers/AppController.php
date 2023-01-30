@@ -55,7 +55,7 @@ class AppController extends Controller
             'description' => 'required'
         ]);
 
-        if($request->doctor == '0'){
+        if ($request->doctor == '0') {
             return redirect()->route('app-patient.create')->with('error', 'Please choose doctor');
         }
 
@@ -66,12 +66,20 @@ class AppController extends Controller
         $cabinid = Appointment::where('cabin', $request->cabin)->first();
         $scheduleid = Appointment::where('schedule_id', $schedule->id)->first();
 
+        if (auth()->user()->role == 'staff') {
+            if ($request->patient == 'Patient') {
+                return redirect()->route('app.create')->with('error', 'Please choose patient');
+            } else if ($request->doctor == 'Doctor') {
+                return redirect()->route('app.create')->with('error', 'Please choose doctor');
+            }
+        }
+
         if ($cabinid && $sessionid && $scheduleid) {
-            if(auth()->user()->role == 'staff'){
+            if (auth()->user()->role == 'staff') {
                 return redirect()->route('app.create')->with('error', 'Please choose another cabin or session');
-            }elseif(auth()->user()->role == 'patient'){
+            } elseif (auth()->user()->role == 'patient') {
                 return redirect()->route('app-patient.create')->with('error', 'Please choose another cabin or session');
-            }     
+            }
         }
 
         $id = IdGenerator::generate(['table' => 'appointments', 'length' => 6, 'prefix' => 'APP']);
@@ -88,7 +96,7 @@ class AppController extends Controller
         ]);
 
         if (auth()->user()->role == 'staff') {
-            return redirect()->route('app.index')->with('sucess', 'Successfully created');
+            return redirect()->route('app.index')->with('success', 'Successfully created');
         } else if (auth()->user()->role == 'patient') {
             return redirect()->route('app-patient.index')->with('success', 'Successfully created');
         }
@@ -99,8 +107,8 @@ class AppController extends Controller
         $request->validate([
             'date' => 'required'
         ]);
+
         $curDate = Carbon::now();
-        // $curDate = Carbon::now()->format('M d, Y');
 
         if ($request->date <= $curDate) {
             return back()->with('error', 'Please select the date after ' . Carbon::createFromFormat('Y-m-d H:i:s', $curDate)->format('M d, Y'));
@@ -118,7 +126,6 @@ class AppController extends Controller
             return back()->with('error', 'No Schedule available for ' . Carbon::createFromFormat('Y-m-d', $request->date)->format('M d,
                 Y'));
         }
-
 
         // if(!$appointment->schedule_id == $schedule->id){
         //     return back()->with('error', 'Cannot set more than one appointment in the same day.');
@@ -217,11 +224,11 @@ class AppController extends Controller
         $scheduleid = Appointment::where('schedule_id', $schedule->id)->first();
 
         if ($cabinid && $sessionid && $scheduleid) {
-            if(auth()->user()->role == 'staff'){
+            if (auth()->user()->role == 'staff') {
                 return redirect()->route('app.create')->with('error', 'Please choose another cabin or session');
-            }elseif(auth()->user()->role == 'patient'){
+            } elseif (auth()->user()->role == 'patient') {
                 return redirect()->route('app-patient.reschedule', $id)->with('error', 'Please choose another cabin or session');
-            }     
+            }
         }
 
         $appointment = Appointment::find($id);

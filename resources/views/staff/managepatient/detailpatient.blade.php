@@ -40,8 +40,9 @@
                             <h3 class="fs-6 text-muted">Age:</h3>
                             @if ($patient->age)
                             <p>{{ $patient->age }}</p>
-                            @endif
+                            @else
                             <p>-</p>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -51,8 +52,9 @@
                             <h3 class="fs-6 text-muted">Date of Birth:</h3>
                             @if ($patient->dob)
                             <p>{{\Carbon\Carbon::createFromFormat('Y-m-d', $patient->dob)->format('M d, Y')}}</p>
-                            @endif
-                            <p>-</p>         
+                            @else
+                            <p>-</p> 
+                            @endif        
                         </div>
                     </div>
                     <div class="col-6">
@@ -60,8 +62,9 @@
                             <h3 class="fs-6 text-muted">Gender:</h3>
                             @if ($patient->gender)
                             <p>{{ $patient->gender }}</p>
-                            @endif
+                            @else
                             <p>-</p>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -71,9 +74,9 @@
                             <h3 class="fs-6 text-muted">Race:</h3>
                             @if ($patient->race)
                             <p>{{ $patient->race }}</p>
-                            @endif
+                            @else
                             <p>-</p>
-
+                            @endif
                         </div>
                     </div>
                     <div class="col-6">
@@ -81,8 +84,9 @@
                             <h3 class="fs-6 text-muted">Contact:</h3>
                             @if ($patient->contact)
                             <p>{{ $patient->contact }}</p>
-                            @endif
+                            @else
                             <p>-</p>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -96,7 +100,6 @@
                             @else
                             <i class="bi bi-person-circle display-4"></i>
                             @endif
-
                         </div>
                     </div>
                     <div class="col-6">
@@ -104,8 +107,9 @@
                             <h3 class="fs-6 text-muted">Address:</h3>
                             @if ($patient->address)
                             <p>{{ $patient->address }}</p>
-                            @endif
+                            @else
                             <p>-</p>
+                            @endif
                         </div>
                     </div>
                 </div>

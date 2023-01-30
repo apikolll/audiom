@@ -35,13 +35,6 @@ class DoctorController extends Controller
                 $todayAppointments = Appointment::where('schedule_id', $schedule->id)->where('doctor_id', $doctor)->count();
             }
             
-            // $tests = Appointment::with('schedule')->where('status', 'Approve')->where('doctor_id', $doctor)->get();
-
-            // if ($tests > 0) {
-            //     $todayAppointments = $tests;
-            // } else {
-            //     $todayAppointments = 0;
-            // }
 
             return view('doctor.dashboard', compact('patients', 'todayAppointments'));
         }
@@ -117,7 +110,12 @@ class DoctorController extends Controller
     {
         // $doctor = Doctor::find($id);
 
-        return view('staff.managedoctor.editdoctor', compact('doctor'));
+        if(auth()->user()->role == 'staff'){
+            return view('staff.managedoctor.editdoctor', compact('doctor'));
+        }else if(auth()->user()->role == 'doctor'){
+            return view('doctor.editprofile', compact('doctor'));
+        }
+       
     }
 
     /**
@@ -129,23 +127,19 @@ class DoctorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $data = $request->validate([
             'name' => 'required',
             'contact' => 'required',
             'race' => 'required',
+            'age' => 'required',
+            'dob' => 'required',
             'gender' => 'required',
             'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
             'address' => 'required'
         ]);
 
-
-        // $user = new User();
-
-        // $user->name = $request->name;
-        // $user->email = $request->email;
-        // $user->password = Hash::make($request->password);
-        // $user->save();
-
+    
+        dd($data);
         $doctor = Doctor::find($id);
         $doctor->name = $request->name;
         $doctor->contact = $request->contact;
@@ -158,7 +152,12 @@ class DoctorController extends Controller
         $doctor->address = $request->address;
         $doctor->save();
 
-        return redirect()->route('doctor.index')->with('success', 'Successfully updated this profile');
+        if(auth()->user()->role == 'staff'){
+            return redirect()->route('doctor.index')->with('success', 'Successfully updated this profile');
+        }else if(auth()->user()->role == 'doctor'){
+            return redirect()->route('doctors.index')->with('success', 'Successfully updated this profile');
+        }
+       
     }
 
     /**

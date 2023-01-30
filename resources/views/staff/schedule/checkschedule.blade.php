@@ -2,20 +2,14 @@
 
 @section('content1')
 
-
-
 <section class="pt-5 fs-6">
     <div class="container">
         <ul class="nav mb-3">
             <li class="nav-item {{ 'app' ==  request()->path() ? 'border-bottom' : '' }}">
                 <a class="nav-link text-light fs-5" href="{{ route('app.index') }}" >Appointments</a>
-                {{--
-                <hr id="hr1" class="active mx-3"> --}}
             </li>
             <li class="nav-item {{ 'schedule' || 'check' ==  request()->path() ? 'border-bottom' : '' }}">
                 <a class="nav-link text-light fs-5" href="{{ route('schedule.index') }}" >Appointment Schedule</a>
-                {{--
-                <hr id="hr2" class="unactive mx-3"> --}}
             </li> 
         </ul>
         

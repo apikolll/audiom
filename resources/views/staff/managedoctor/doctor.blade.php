@@ -2,12 +2,15 @@
 
 @section('content1')
 
-<section class="pt-5">
+<section class="pt-5 fs-6">
     <div class="container">
 
         <ul class="nav mb-3">
-            <li> <h2 class="text-light nav-item fs-5 {{ 'doctor' ==  request()->path() ? 'border-bottom' : '' }}">Doctors</h2></li>
-         </ul>
+            <li>
+                <h2 class="text-light nav-item fs-5 {{ 'doctor' ==  request()->path() ? 'border-bottom' : '' }}">Doctors
+                </h2>
+            </li>
+        </ul>
 
         @if(Session::has('success'))
         <div class="alert alert-success alert-dismissible fade show text-center fs-6" role="alert">
@@ -42,35 +45,36 @@
                         <tbody class="text-start fs-6">
                             <tr>
                                 <td>
-                                <div class="d-flex gap-3 align-items-center">
-                                    @if ($doctors->image)
-                                    <img src="{{ Storage::url($doctors->image) }}" alt="dp" class="rounded-circle"
-                                        style="width: 50px;height:50px">
-                                    @else
-                                    <i class="bi bi-person-circle display-6"></i>
-                                    @endif
-                                    <div class="d-block text-start">
-                                        <span class="fs-6 d-block">{{ $doctors->name }}</span>
-                                        <span class="fs-6 d-block text-secondary">{{ $doctors->users->email }}</span>
+                                    <div class="d-flex gap-3 align-items-center">
+                                        @if ($doctors->image)
+                                        <img src="{{ Storage::url($doctors->image) }}" alt="dp" class="rounded-circle"
+                                            style="width: 50px;height:50px">
+                                        @else
+                                        <i class="bi bi-person-circle display-6"></i>
+                                        @endif
+                                        <div class="d-block text-start">
+                                            <span class="fs-6 d-block">{{ $doctors->name }}</span>
+                                            <span class="fs-6 d-block text-secondary">{{ $doctors->users->email
+                                                }}</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                                <td class="text-truncate align-middle" style="max-width: 150px;">{{ $doctors->address }}</td>
+                                </td>
+                                <td class="text-truncate align-middle" style="max-width: 150px;">{{ $doctors->address }}
+                                </td>
                                 <td class="align-middle">{{ $doctors->contact }}</td>
                                 <td>
-                                    <form action="{{ route('doctor.destroy', $doctors->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <a href="{{ route('doctor.show', $doctors->id) }}"
-                                            class="text-decoration-none btn btn-outline-success">More details</a>
-                                        <a href="{{ route('doctor.edit', $doctors->id) }}"
-                                            class="text-decoration-none btn btn-warning">Edit profile</a>
-                                        <button class="btn btn-danger" type="submit">Remove</button>
-                                    </form>
+                                    <a href="{{ route('doctor.show', $doctors->id) }}"
+                                        class="text-decoration-none btn btn-outline-success">More details</a>
+                                    <a href="{{ route('doctor.edit', $doctors->id) }}"
+                                        class="text-decoration-none btn btn-warning">Edit profile</a>
+                                    <a class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#ModalDelete{{ $doctors->id }}">Remove</a>
+
                                 </td>
+                                @include('staff.managedoctor.deletedoctor')
                             </tr>
                         </tbody>
-                        {{-- {!! $patient->links() !!} --}}
+                        {!! $doctor->links() !!}
                         @endforeach
                         @else
                         <tr>

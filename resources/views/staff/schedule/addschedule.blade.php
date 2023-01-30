@@ -18,42 +18,41 @@
 <a href="{{ route('schedule.showSchedule') }}" class="btn btn-primary mb-3"><i class="bi bi-chevron-left"></i> Back</a>
 
 @if (Session::has('success'))
-<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+<div class="alert alert-success alert-dismissible fade show text-center fs-6" role="alert">
     {{ Session::get('success') }}
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @endif
 
 @if (Session::has('message'))
-<div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+<div class="alert alert-success alert-dismissible fade show text-center fs-6" role="alert">
     {{ Session::get('message') }}
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @endif
 
 @if (Session::has('error'))
-<div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+<div class="alert alert-danger alert-dismissible fade show text-center fs-6" role="alert">
     {{ Session::get('error') }}
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @endif
 
 @error('date')
-<div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+<div class="alert alert-danger alert-dismissible fade show text-center fs-6" role="alert">
     {{ $message }}
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @enderror
 
 @error('session')
-<div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
+<div class="alert alert-danger alert-dismissible fade show text-center fs-6" role="alert">
     Please pick session
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 </div>
 @enderror
 
 <section class="p-5 text-dark fs-5 shadow-lg bg-light border border-dark rounded-4 border-opacity-10">
-
 
     <div class="alert alert-danger alert-dismissible fade show text-center unactive" id="err" role="alert">
         <span id="text1"></span>

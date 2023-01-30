@@ -30,7 +30,6 @@ use App\Mail\Notify;
 
 Route::group(['middleware' => 'prevent-back-history'],function(){
 
-
 Route::get('/', function () {
     return view('homepage');
 })->name('homepage.page');
@@ -42,7 +41,6 @@ Route::get('register', function(){
 Route::get('login', function(){
     return view('auth.login');
 })->name('login');
-
 
 Route::post('create', [UserController::class, ('createUser')])->name('register.custom');
 Route::post('login-user', [UserController::class, ('customLogin')])->name('login.custom');
@@ -59,7 +57,6 @@ Route::group(['middleware' => ['auth', 'user:patient']], function () {
         Route::get('/change-patient-password', 'changePatientPassword')->name('change.patient.password');
         Route::post('/change-patient-pass', 'updatePatientPassword')->name('update.patient.password');
     });
-
     
     Route::controller(AppController::class)->group(function(){
         Route::get('app-patient', 'index')->name('app-patient.index');

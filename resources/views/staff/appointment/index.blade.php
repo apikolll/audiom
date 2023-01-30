@@ -14,9 +14,10 @@
     }
 </style>
 
+
+
 <section class="pt-5 fs-6">
     <div class="container">
-
         <ul class="nav mb-3">
             <li class="nav-item {{ 'app' ==  request()->path() ? 'border-bottom' : '' }}">
                 <a class="nav-link text-light fs-5" href="{{ route('app.index') }}">Appointments</a>
@@ -26,6 +27,12 @@
             </li>
         </ul>
 
+        @if (Session::has('success'))
+        <div class="alert alert-success alert-dismissible fade show text-center fs-6" role="alert">
+            {{ Session::get('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
         <div class="card">
             <div class="card-body">
                 <div class="d-flex justify-content-end align-items-center mb-3">
@@ -42,8 +49,8 @@
                             <th scope="col" class="text-muted"></th>
                         </tr>
                     </thead>
-                    @if (count($appointments) > 0)
 
+                    @if (count($appointments) > 0)
                     @foreach ($appointments as $appointment)
                     <tbody class="align-middle">
                         <tr>
@@ -64,13 +71,12 @@
                                     <option value="FollowUp">Follow-up</option>
                                 </select></td>
                             <td>
-                                <form action="{{ route('app.delete', $appointment->id) }}" method="POST">
-                                    @csrf
-                                    <a href="{{ route('app.show', $appointment->id) }}"
-                                        class="btn btn-outline-primary">Details</a>
-                                    <button class="btn btn-danger" type="submit">Delete</button>
-                                </form>
+                                <a href="{{ route('app.show', $appointment->id) }}"
+                                    class="btn btn-outline-primary">Details</a>
+                                <a href="#" class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#ModalDelete{{ $appointment->id }}">Delete</a>
                             </td>
+                            @include('staff.appointment.deleteappointment')
                         </tr>
                     </tbody>
                     @endforeach
@@ -80,6 +86,7 @@
                     </tr>
                     @endif
                 </table>
+
             </div>
         </div>
     </div>

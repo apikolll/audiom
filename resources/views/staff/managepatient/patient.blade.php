@@ -7,8 +7,11 @@
     <div class="container">
 
         <ul class="nav mb-3">
-            <li> <h2 class="text-light nav-item fs-5 {{ 'patient' ==  request()->path() ? 'border-bottom' : '' }}">Patient</h2></li>
-         </ul>
+            <li>
+                <h2 class="text-light nav-item fs-5 {{ 'patient' ==  request()->path() ? 'border-bottom' : '' }}">
+                    Patient</h2>
+            </li>
+        </ul>
 
         @if(Session::has('success'))
         <div class="alert alert-success alert-dismissible fade show text-center fs-6" role="alert">
@@ -17,7 +20,7 @@
         </div>
         @endif
 
-        <div class="card">
+        <div class="card fs-6">
             <div class="card-body">
                 <div class="card-title d-flex justify-content-between">
                     <h3 class="fs-5">All Patients</h3>
@@ -51,7 +54,8 @@
                                         @endif
                                         <div class="d-block text-start">
                                             <span class="fs-6 d-block">{{ $patient->name }}</span>
-                                            <span class="fs-6 d-block text-secondary">{{ $patient->users->email }}</span>
+                                            <span class="fs-6 d-block text-secondary">{{ $patient->users->email
+                                                }}</span>
                                         </div>
                                     </div>
                                 </td>
@@ -61,21 +65,24 @@
                                 @else
                                 <td class="fs-6">{{ \Carbon\Carbon::parse($patient->dob)->format('j F, Y') }}</td>
                                 @endif
+                                @if ($patient->age)
                                 <td class="fs-6">{{ $patient->age }} years old</td>
+                                @else
+                                <td class="fs-6">-</td>
+                                @endif
+
                                 <td>
-                                    <form action="{{ route('patient.destroy', $patient->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <a href="{{ route('patient.show', $patient->id) }}"
-                                            class="text-decoration-none btn btn-outline-success">More details</a>
-                                        <a href="{{ route('patient.edit', $patient->id) }}"
-                                            class="text-decoration-none btn btn-warning">Edit profile</a>
-                                        <button class="btn btn-danger" type="submit">Remove</button>
-                                    </form>
+                                    <a href="{{ route('patient.show', $patient->id) }}"
+                                        class="text-decoration-none btn btn-outline-success">More details</a>
+                                    <a href="{{ route('patient.edit', $patient->id) }}"
+                                        class="text-decoration-none btn btn-warning">Edit profile</a>
+                                    <a class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#ModalDelete{{ $patient->id }}">Remove</a>
                                 </td>
+                                @include('staff.managepatient.deletepatient')
                             </tr>
                         </tbody>
-                        {{-- {!! $patient->links() !!} --}}
+                        {!! $patient->links() !!}
                         @endforeach
                         @else
                         <tr>

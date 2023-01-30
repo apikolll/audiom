@@ -1,7 +1,6 @@
 @extends('patient.sidebar-patient')
 
 @section('content1')
-@section('content1')
 
 <div class="text-center text-light">
     <h3 class="display-3 fw-bold">Edit Profile</h3>

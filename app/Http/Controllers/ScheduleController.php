@@ -43,11 +43,6 @@ class ScheduleController extends Controller
             'session' => 'required',
         ]);
 
-        // $currentdate = Schedule::all();
-        // if($request->date == $currentdate->date){
-
-        // }
-
         $schedule = Schedule::where('date', $request->date)->first();
 
         if($schedule){
@@ -64,7 +59,7 @@ class ScheduleController extends Controller
             $app->sessions()->attach([$session]);
         }
 
-        return redirect()->route('schedule.showSchedule')->with('message', 'An appointment created for ' . Carbon::createFromFormat('Y-m-d', $request->date)->format('M d,
+        return redirect()->route('schedule.create')->with('message', 'An appointment created for ' . Carbon::createFromFormat('Y-m-d', $request->date)->format('M d,
         Y'));
 
     }

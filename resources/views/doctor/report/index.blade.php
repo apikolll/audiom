@@ -22,13 +22,14 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @if (count($appointments) > 0)
                             @foreach ($appointments as $appointment)
                             <tr class="align-middle">
                                 <td><span class="badge bg-info">{{ $appointment->id }}</span></td>
                                 <td><span class="badge bg-info">{{ $appointment->patient_id }}</span></td>
                                 <td>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $appointment->schedule->date)->format("M d, Y") }}</td>
                                 @if (!$appointment->report_id)
-                                <td><span class="badge badge-warning">N/A</span></td>
+                                <td><span class="badge bg-warning">N/A</span></td>
                                 <td>
                                     <a href="{{ route('report.create', $appointment->id) }}" class="btn btn-primary">Generate</a>
                                 </td>
@@ -41,6 +42,11 @@
                                 @endif
                             </tr>
                             @endforeach
+                            @else
+                                <tr>
+                                    <td class="text-center" colspan="5">No Appointment available</td>
+                                </tr>
+                            @endif 
                         </tbody>
                     </table>
                 </div>

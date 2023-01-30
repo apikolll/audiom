@@ -20,7 +20,7 @@
         <div class="text-center">
             {{-- <input class="btn btn-block" name="date"
                 value="{{\Carbon\Carbon::createFromFormat('Y-m-d', $date)->format('M d, Y')}}"> --}}
-            <input class="btn btn-block" name="date" value="{{$date}}">
+            <input class="btn btn-block" name="date" value="{{$date}}" readonly>
         </div>
 
 
@@ -60,7 +60,7 @@
                         <div class="col-4">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" value="{{ $session->id }}"
-                                    id="flexRadioDefault1" name="session">
+                                    id="flexRadioDefault1" name="session" required>
                                 <label class="form-check-label" for="flexRadioDefault1">
                                     Session {{ $session->id }}
                                     <p class="lead fs-6"> Time:
@@ -85,7 +85,7 @@
                         <div class="col-4">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="cabin" value=1
-                                    id="flexRadioDefault1">
+                                    id="flexRadioDefault1" required>
                                 <label class="form-check-label" for="flexRadioDefault1">
                                     Cabin 1
                                 </label>
@@ -94,7 +94,7 @@
                         <div class="col-4">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="cabin" value=2
-                                    id="flexRadioDefault1">
+                                    id="flexRadioDefault1" required>
                                 <label class="form-check-label" for="flexRadioDefault1">
                                     Cabin 2
                                 </label>
@@ -103,7 +103,7 @@
                         <div class="col-4">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="cabin" value=3
-                                    id="flexRadioDefault1">
+                                    id="flexRadioDefault1" required>
                                 <label class="form-check-label" for="flexRadioDefault1">
                                     Cabin 3
                                 </label>
