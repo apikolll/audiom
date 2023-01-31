@@ -110,9 +110,9 @@ class AppController extends Controller
 
         $curDate = Carbon::now();
 
-        if ($request->date + 1 <= $curDate) {
-            return back()->with('error', 'Please select the date after ' . Carbon::createFromFormat('Y-m-d H:i:s', $curDate)->format('M d, Y'));
-        }
+        // if ($request->date <= $curDate) {
+        //     return back()->with('error', 'Please select the date after ' . Carbon::createFromFormat('Y-m-d H:i:s', $curDate)->format('M d, Y'));
+        // }
 
         // $appointment = Appointment::where('patient_id', 1)->first();
 
