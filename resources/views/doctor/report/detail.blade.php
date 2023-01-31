@@ -30,11 +30,11 @@
                                     <span>Age</span><br>
                                     <span>{{ $appointment->patient->age }}</span>
                                 </div>
-                                <div class="col-6">
+                                {{-- <div class="col-6">
                                     <span class="text-muted">Date of Birth</span><br>
                                     <span>{{ \Carbon\Carbon::createFromFormat('Y-m-d',
                                         $appointment->patient->dob)->format('M d, Y') }}</span>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="row mb-3">
                                 <div class="col-6">
