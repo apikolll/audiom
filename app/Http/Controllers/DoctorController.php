@@ -194,7 +194,7 @@ class DoctorController extends Controller
             return back();
         }
         
-        $apps = Appointment::where('schedule_id', $schedule->id)->where('doctor_id', $doctor)->get();
+        $apps = Appointment::where('schedule_id', $schedule->id)->where('doctor_id', $doctor)->where('status', 'Approve')->get();
 
         return view('doctor.todayappointment.index', compact('apps'));
     }
