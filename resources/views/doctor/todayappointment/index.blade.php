@@ -39,7 +39,7 @@
                     </tbody>
                     @else
                     <tr>
-                        <td colspan="3">No Appointment today</td>
+                        <td colspan="3" class="text-center">No Appointment today</td>
                     </tr>
                     @endif
                 </table>
