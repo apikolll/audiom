@@ -70,6 +70,12 @@ class DoctorController extends Controller
         //     'address' => 'required'
         // ]);
 
+        $exist = User::where('email', $request->email)->first();
+        
+        if($exist){
+            return back()->with('error', 'Email is already taken.');
+        }
+
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
@@ -77,11 +83,7 @@ class DoctorController extends Controller
         $user->role = "doctor";
         $user->save();
 
-        $exist = User::where('email', $request->email)->first();
-
-        if($exist){
-            return back()->with('error', 'Email is already taken.');
-        }
+        
 
         Doctor::create([
             'name' => $request->name,
