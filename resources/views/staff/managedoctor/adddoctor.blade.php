@@ -82,7 +82,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label class="mb-2">Picture:</label>
-                    <input class="form-control bg-light" type="file" name="image">
+                    <input class="form-control bg-light" type="file" name="image" required>
                 </div>
             </div>
         </div>
