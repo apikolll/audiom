@@ -70,6 +70,12 @@ class PatientController extends Controller
         ]);
         // dd($request->all());
 
+        $exist = User::where('email', $request->email)->first();
+        
+        if($exist){
+            return back()->with('error', 'Email is already taken.');
+        }
+
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;

@@ -19,6 +19,13 @@
 </div>
 <a href="{{ URL::previous() }}" class="btn btn-primary mb-3"><i class="bi bi-chevron-left"></i> Back</a>
 
+@if (Session::has('error'))
+<div class="alert alert-danger alert-dismissible fade show text-center fs-6" role="alert">
+    {{ Session::get('error') }}
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+@endif
+
 <section class="p-5 text-dark fs-5 shadow-lg bg-light border border-dark rounded-4 border-opacity-10">
     @error('password')
     <div class="alert alert-danger alert-dismissible fade show text-center" role="alert">
@@ -75,13 +82,15 @@
                     <label class="mb-2">Select Gender:</label>
                     <div class="d-flex gap-2">
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" value="male" name="gender" id="flexRadioDefault1">
+                            <input class="form-check-input" type="radio" value="male" name="gender"
+                                id="flexRadioDefault1">
                             <label class="form-check-label" for="male">
                                 Male
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" value="female" name="gender" id="flexRadioDefault2">
+                            <input class="form-check-input" type="radio" value="female" name="gender"
+                                id="flexRadioDefault2">
                             <label class="form-check-label" for="flexRadioDefault2">
                                 Female
                             </label>
