@@ -33,7 +33,7 @@ class DoctorController extends Controller
             if(!$schedule){
                 $todayAppointments = 0;
             }else{
-                $todayAppointments = Appointment::where('schedule_id', $schedule->id)->where('doctor_id', $doctor)->count();
+                $todayAppointments = Appointment::where('schedule_id', $schedule->id)->where('doctor_id', $doctor)->where('status', 'Approve')->count();
             }
             
 
